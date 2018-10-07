@@ -1,0 +1,33 @@
+
+/* Class = "UILabel"; text = "0"; ObjectID = "1mf-d7-blN"; */
+"1mf-d7-blN.text" = "0";
+
+/* Class = "UILabel"; text = "C4"; ObjectID = "3aS-E9-IjQ"; */
+"3aS-E9-IjQ.text" = "C4";
+
+/* Class = "UILabel"; text = "Note (Flats):"; ObjectID = "Eax-Y2-DlR"; */
+"Eax-Y2-DlR.text" = "Dźwięk (bemol):";
+
+/* Class = "UILabel"; text = "F4"; ObjectID = "Mcf-Kn-Hg2"; */
+"Mcf-Kn-Hg2.text" = "F4";
+
+/* Class = "UILabel"; text = "Frequency:"; ObjectID = "Ovf-Om-qHu"; */
+"Ovf-Om-qHu.text" = "Częstotliwość:";
+
+/* Class = "UILabel"; text = "Audio Input Plot"; ObjectID = "SGC-Cb-gw2"; */
+"SGC-Cb-gw2.text" = "Wykres dźwięku";
+
+/* Class = "UILabel"; text = "Note (Sharps):"; ObjectID = "V98-zq-a2g"; */
+"V98-zq-a2g.text" = "Dźwięk (fismol):";
+
+/* Class = "UILabel"; text = "Amplitude:"; ObjectID = "wkv-EW-Eya"; */
+"wkv-EW-Eya.text" = "Amplituda:";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "xph-d4-IE8"; */
+"xph-d4-IE8.text" = "0";
+
+/* Class = "UILabel"; text = "Sing into the Microphone"; ObjectID = "ye7-0E-9CU"; */
+"ye7-0E-9CU.text" = "Powiedz coś do mikrofonu";
+
+"dhC-UW-2jC.text" = "Pokaż reklamę";
+

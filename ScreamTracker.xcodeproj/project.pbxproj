@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		394493568CAC6137A5E43B48 /* Pods_ScreamTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71A05AB7A21DB921357DB6D1 /* Pods_ScreamTracker.framework */; };
+		E527BBF02144791F007BB2B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E527BBEF2144791F007BB2B1 /* AppDelegate.swift */; };
+		E527BBF22144791F007BB2B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E527BBF12144791F007BB2B1 /* ViewController.swift */; };
+		E527BBF52144791F007BB2B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E527BBF32144791F007BB2B1 /* Main.storyboard */; };
+		E527BBF721447925007BB2B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E527BBF621447925007BB2B1 /* Assets.xcassets */; };
+		E527BBFA21447925007BB2B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E527BBF821447925007BB2B1 /* LaunchScreen.storyboard */; };
+		E547F6D32152F33F00B31E9B /* ScreamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547F6D22152F33F00B31E9B /* ScreamTableViewCell.swift */; };
+		E570A82221622D4D00178CB5 /* toDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E570A82121622D4D00178CB5 /* toDo.swift */; };
+		E5A40612215D740B004C1004 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E5A40611215D740B004C1004 /* GoogleService-Info.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3D574A226CBE69F600B2CFBB /* Pods-ScreamTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScreamTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScreamTracker/Pods-ScreamTracker.release.xcconfig"; sourceTree = "<group>"; };
+		71A05AB7A21DB921357DB6D1 /* Pods_ScreamTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScreamTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2F181FB35D5A80786B5E1A2 /* Pods-ScreamTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScreamTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScreamTracker/Pods-ScreamTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		E5097AC521471FCF000C8169 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		E5097AC62147207D000C8169 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Main.strings; sourceTree = "<group>"; };
+		E527BBEC2144791F007BB2B1 /* ScreamTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreamTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E527BBEF2144791F007BB2B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E527BBF12144791F007BB2B1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E527BBF42144791F007BB2B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E527BBF621447925007BB2B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E527BBF921447925007BB2B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E527BBFB21447925007BB2B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = /Users/Pawel/Documents/xcode/ScreamTracker/ScreamTracker/Info.plist; sourceTree = "<absolute>"; };
+		E547F6D22152F33F00B31E9B /* ScreamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreamTableViewCell.swift; sourceTree = "<group>"; };
+		E570A82121622D4D00178CB5 /* toDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toDo.swift; sourceTree = "<group>"; };
+		E570A8232162BBC700178CB5 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "../../../Downloads/AudioKit-4.5.0/Frameworks/AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
+		E5A40611215D740B004C1004 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E527BBE92144791F007BB2B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				394493568CAC6137A5E43B48 /* Pods_ScreamTracker.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8DE2291A28456668DC25F3D5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E2F181FB35D5A80786B5E1A2 /* Pods-ScreamTracker.debug.xcconfig */,
+				3D574A226CBE69F600B2CFBB /* Pods-ScreamTracker.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		AE5EE0BEFBE10CE25FF8C95E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E570A8232162BBC700178CB5 /* AudioKit.framework */,
+				71A05AB7A21DB921357DB6D1 /* Pods_ScreamTracker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E527BBE32144791F007BB2B1 = {
+			isa = PBXGroup;
+			children = (
+				E527BBEE2144791F007BB2B1 /* ScreamTracker */,
+				E527BBED2144791F007BB2B1 /* Products */,
+				8DE2291A28456668DC25F3D5 /* Pods */,
+				AE5EE0BEFBE10CE25FF8C95E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E527BBED2144791F007BB2B1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E527BBEC2144791F007BB2B1 /* ScreamTracker.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E527BBEE2144791F007BB2B1 /* ScreamTracker */ = {
+			isa = PBXGroup;
+			children = (
+				E527BBEF2144791F007BB2B1 /* AppDelegate.swift */,
+				E527BBF12144791F007BB2B1 /* ViewController.swift */,
+				E547F6D22152F33F00B31E9B /* ScreamTableViewCell.swift */,
+				E527BBF32144791F007BB2B1 /* Main.storyboard */,
+				E527BBF621447925007BB2B1 /* Assets.xcassets */,
+				E527BBF821447925007BB2B1 /* LaunchScreen.storyboard */,
+				E527BBFB21447925007BB2B1 /* Info.plist */,
+				E5A40611215D740B004C1004 /* GoogleService-Info.plist */,
+				E570A82121622D4D00178CB5 /* toDo.swift */,
+			);
+			path = ScreamTracker;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E527BBEB2144791F007BB2B1 /* ScreamTracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E527BBFE21447925007BB2B1 /* Build configuration list for PBXNativeTarget "ScreamTracker" */;
+			buildPhases = (
+				46993631880F1B1722D86C53 /* [CP] Check Pods Manifest.lock */,
+				E527BBE82144791F007BB2B1 /* Sources */,
+				E527BBE92144791F007BB2B1 /* Frameworks */,
+				E527BBEA2144791F007BB2B1 /* Resources */,
+				F46F3CE3A07B7AB2A642A143 /* [CP] Embed Pods Frameworks */,
+				E5A40610215CD640004C1004 /* Run Script */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScreamTracker;
+			productName = nagrywanie2;
+			productReference = E527BBEC2144791F007BB2B1 /* ScreamTracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E527BBE42144791F007BB2B1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = kiler;
+				TargetAttributes = {
+					E527BBEB2144791F007BB2B1 = {
+						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
+					};
+				};
+			};
+			buildConfigurationList = E527BBE72144791F007BB2B1 /* Build configuration list for PBXProject "ScreamTracker" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E527BBE32144791F007BB2B1;
+			productRefGroup = E527BBED2144791F007BB2B1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E527BBEB2144791F007BB2B1 /* ScreamTracker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E527BBEA2144791F007BB2B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E527BBFA21447925007BB2B1 /* LaunchScreen.storyboard in Resources */,
+				E5A40612215D740B004C1004 /* GoogleService-Info.plist in Resources */,
+				E527BBF721447925007BB2B1 /* Assets.xcassets in Resources */,
+				E527BBF52144791F007BB2B1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		46993631880F1B1722D86C53 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ScreamTracker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5A40610215CD640004C1004 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
+		};
+		F46F3CE3A07B7AB2A642A143 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ScreamTracker/Pods-ScreamTracker-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ScreamTracker/Pods-ScreamTracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E527BBE82144791F007BB2B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E547F6D32152F33F00B31E9B /* ScreamTableViewCell.swift in Sources */,
+				E527BBF22144791F007BB2B1 /* ViewController.swift in Sources */,
+				E527BBF02144791F007BB2B1 /* AppDelegate.swift in Sources */,
+				E570A82221622D4D00178CB5 /* toDo.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E527BBF32144791F007BB2B1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E527BBF42144791F007BB2B1 /* Base */,
+				E5097AC521471FCF000C8169 /* en */,
+				E5097AC62147207D000C8169 /* pl */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E527BBF821447925007BB2B1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E527BBF921447925007BB2B1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E527BBFC21447925007BB2B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E527BBFD21447925007BB2B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E527BBFF21447925007BB2B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2F181FB35D5A80786B5E1A2 /* Pods-ScreamTracker.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4F25NTVE7X;
+				INFOPLIST_FILE = "$(SRCROOT)/ScreamTracker/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kiler.screamtracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E527BC0021447925007BB2B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D574A226CBE69F600B2CFBB /* Pods-ScreamTracker.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4F25NTVE7X;
+				INFOPLIST_FILE = "$(SRCROOT)/ScreamTracker/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kiler.screamtracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E527BBE72144791F007BB2B1 /* Build configuration list for PBXProject "ScreamTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E527BBFC21447925007BB2B1 /* Debug */,
+				E527BBFD21447925007BB2B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E527BBFE21447925007BB2B1 /* Build configuration list for PBXNativeTarget "ScreamTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E527BBFF21447925007BB2B1 /* Debug */,
+				E527BC0021447925007BB2B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E527BBE42144791F007BB2B1 /* Project object */;
+}

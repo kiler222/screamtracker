@@ -1,0 +1,6 @@
+framework module Pods_ScreamTracker {
+  umbrella header "Pods-ScreamTracker-umbrella.h"
+
+  export *
+  module * { export * }
+}
