@@ -48,14 +48,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="149.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3EY-bV-EMp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="272" height="12"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3EY-bV-EMp">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="12"/>
+                                                    <viewLayoutGuide key="safeArea" id="YIB-nd-ngS"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="baseline_play_circle_outline_black_36pt" translatesAutoresizingMaskIntoConstraints="NO" id="F8j-On-Rbn">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="baseline_play_circle_outline_black_36pt" translatesAutoresizingMaskIntoConstraints="NO" id="F8j-On-Rbn">
                                                     <rect key="frame" x="15" y="42" width="36" height="36"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <view userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="SDs-j1-yCm" customClass="LineChartView" customModule="Charts">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="149.5"/>
@@ -63,14 +65,13 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="3EY-bV-EMp" secondAttribute="trailing" constant="33" id="6Sd-hg-3gj"/>
                                                 <constraint firstAttribute="trailing" secondItem="SDs-j1-yCm" secondAttribute="trailing" id="N4t-Z7-jhC"/>
-                                                <constraint firstItem="F8j-On-Rbn" firstAttribute="top" secondItem="3EY-bV-EMp" secondAttribute="bottom" constant="30" id="RjH-ti-xwe"/>
-                                                <constraint firstItem="3EY-bV-EMp" firstAttribute="leading" secondItem="SDs-j1-yCm" secondAttribute="leading" id="Sut-1W-OTq"/>
-                                                <constraint firstItem="3EY-bV-EMp" firstAttribute="top" secondItem="SDs-j1-yCm" secondAttribute="top" id="Tok-2y-6c2"/>
+                                                <constraint firstAttribute="trailing" secondItem="3EY-bV-EMp" secondAttribute="trailing" constant="20" id="SIM-lc-cFd"/>
                                                 <constraint firstItem="SDs-j1-yCm" firstAttribute="top" secondItem="HWS-mC-qFu" secondAttribute="top" id="Ts3-A3-IrB"/>
                                                 <constraint firstItem="SDs-j1-yCm" firstAttribute="centerX" secondItem="HWS-mC-qFu" secondAttribute="centerX" id="fBj-Ux-lTL"/>
                                                 <constraint firstItem="SDs-j1-yCm" firstAttribute="centerY" secondItem="HWS-mC-qFu" secondAttribute="centerY" id="nGb-L9-2oO"/>
+                                                <constraint firstItem="3EY-bV-EMp" firstAttribute="top" secondItem="HWS-mC-qFu" secondAttribute="top" id="nYS-9y-KXi"/>
+                                                <constraint firstItem="3EY-bV-EMp" firstAttribute="leading" secondItem="HWS-mC-qFu" secondAttribute="leading" id="w3z-HM-zE3"/>
                                                 <constraint firstItem="SDs-j1-yCm" firstAttribute="leading" secondItem="HWS-mC-qFu" secondAttribute="leading" id="zO1-G8-xFa"/>
                                             </constraints>
                                         </tableViewCellContentView>

@@ -85,10 +85,7 @@ class ScreamTableViewCell: UITableViewCell {
         screamChartView.leftAxis.axisLineColor = .clear
         screamChartView.legend.enabled = false
         screamChartView.chartDescription?.enabled = false
-//        screamChartView.frame.size.width = self.frame.size.width
-//        print("frame: \(frame)")
-//        screamChartView.frame = CGRect(x: 0, y: 210, width: self.view.frame.width , height: 85)
-//        print("chart: \(screamChartView.frame)")
+
         
     }
 

@@ -19,13 +19,8 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
     @IBOutlet weak var tableView: UITableView!
     let cellReuseIdentifier = "ScreamTableViewCell"
-//    let cellReuseIdentifier = "cell"
     
     
-   
-    
-    
-//    @IBOutlet private var audioInputPlot: EZAudioPlot!
     @IBOutlet weak var screamTrackerButton: UIButton!
     
     @IBOutlet weak var drawWaveform: UIView!
@@ -37,6 +32,8 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     @IBOutlet weak var recordedSessionChartView: LineChartView!
     
     var datas = [String]()
+    var duration = [Double]()
+    var timeStamp = [String]()
     
     var months: [String]!
     var x: Int = 0 //counter do uzupełniania wykresu próbek
@@ -290,7 +287,10 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         // create a new cell if needed or reuse an old one
         let cell: ScreamTableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ScreamTableViewCell
         
-   //     cell.timeStamp?.text = datas[indexPath.row]
+//        cell.timeStamp?.text = String(format: "Duration: %.1f", duration[indexPath.row])
+        
+//        cell.timeStamp?.text = String(format: "Timestamp: %.1f", timeStamp[indexPath.row] )
+     
         cell.setChartInCell(audioData: dictOfAudioFloat[audioFilenames[indexPath.row]]!, points: 350)
         
         return cell
@@ -546,7 +546,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
     }
     
-    
+ /*
     func playScream(audioFileName: String){
         var player: AKPlayer!
         var mixloop: AKAudioFile!
@@ -618,7 +618,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
         
     }
-    
+ */
     
     func playScream2(audioFileName: String){
 //        var player: AKPlayer!
@@ -653,11 +653,11 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
         
         let urlFile = URL(fileURLWithPath: filePath)
-        
+
 //        print(filePath)
 //        print(urlFile)
-        
-        
+
+
         do {
             sound = try AVAudioPlayer(contentsOf: urlFile)
             sound.delegate = self
@@ -665,13 +665,13 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         } catch let error{
             print(error)
         }
-//        sleep(1)
+
 //        sound.stop()
-        
- 
-        
-        print("duration: \(sound.duration)")
-//        isPlayingScream = false
+
+
+
+//        print("duration: \(sound.duration)")
+        isPlayingScream = false
         
     }
     
@@ -705,6 +705,13 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
         //usleep(10000)
      //   print("ile próbek ma plik: \(mixloop.floatChannelData![0].count)")
+    //    print("w preapre audio datafloat: \(mixloop.duration)")
+        duration.insert(mixloop!.duration, at: 0)
+
+//        timeStamp.insert(NSDate().timeIntervalSince1970, at: 0)
+//        timeStamp.insert(String(Date()), at: 0)
+        
+        
         return mixloop.floatChannelData![0]
         
 //        setRecordedSessionChart(audioData: (mixloop.floatChannelData![0]), points: points)
