@@ -220,8 +220,10 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         interstitial = createAndLoadInterstitial()
         interstitial.delegate = self
         let request = GADRequest()
+        request.testDevices = ["kGADSimulatorID", "b0aff17d3218b314d602d3ab5f425852"]
+        request.testDevices = @[ @"b0aff17d3218b314d602d3ab5f425852" ]
         interstitial.load(request)
-      //  request.testDevices = ["kGADSimulatorID", "b0aff17d3218b314d602d3ab5f425852"]
+        
         
         
       //  startScreamTracker()
@@ -289,7 +291,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
 //        cell.timeStamp?.text = String(format: "Duration: %.1f", duration[indexPath.row])
         
-//        cell.timeStamp?.text = String(format: "Timestamp: %.1f", timeStamp[indexPath.row] )
+        cell.timeStamp?.text = "Detected: \(timeStamp[indexPath.row])"
      
         cell.setChartInCell(audioData: dictOfAudioFloat[audioFilenames[indexPath.row]]!, points: 350)
         
@@ -679,7 +681,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
         print("koniec grania")
         usleep(200000)
-        if playCounts > 10{ //po ilu odtworzeniach ma być wyświetlony interstitial
+        if playCounts > 3{ //po ilu odtworzeniach ma być wyświetlony interstitial
             if interstitial.isReady {
                 interstitial.present(fromRootViewController: self)
                 playCounts = 0
@@ -710,7 +712,12 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
 
 //        timeStamp.insert(NSDate().timeIntervalSince1970, at: 0)
 //        timeStamp.insert(String(Date()), at: 0)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
         
+        timeStamp.insert(dateFormatter.string(from: Date()), at: 0)
+//        print(date)
         
         return mixloop.floatChannelData![0]
         
@@ -915,7 +922,10 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
     
     func createAndLoadInterstitial() -> GADInterstitial {
-        interstitial = GADInterstitial(adUnitID: "ca-app-pub-8857410705016797/3847300079")
+//        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910") // testowy interistetial admob
+//        interstitial = GADInterstitial(adUnitID: "ca-app-pub-8857410705016797/3847300079") //  moj admob
+        
+        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910") //testowy video interisitial admob
         interstitial.delegate = self
         interstitial.load(GADRequest())
         return interstitial
