@@ -208,22 +208,28 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     //    lineChartView.frame.origin.x = 0
        
        
+        //  request.testDevices = ["kGADSimulatorID", "b0aff17d3218b314d602d3ab5f425852"]
+       
+        request.testDevices = ["kGADSimulatorID", "b0aff17d3218b314d602d3ab5f425852"]
         
         // In this case, we instantiate the banner with desired ad size.
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         addBannerViewToView(bannerView)
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" //"ca-app-pub-8857410705016797/7011915857" - moj admob//
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" //testowy admob
+//        bannerView.adUnitID = "ca-app-pub-8857410705016797/7011915857" // moj admob
+        
         
         bannerView.rootViewController = self
-        bannerView.load(GADRequest())
+        bannerView.load(request)
         bannerView.delegate = self
-        interstitial = createAndLoadInterstitial()
-        interstitial.delegate = self
-        let request = GADRequest()
-        request.testDevices = ["kGADSimulatorID", "b0aff17d3218b314d602d3ab5f425852"]
-        request.testDevices = @[ @"b0aff17d3218b314d602d3ab5f425852" ]
-        interstitial.load(request)
         
+        createAndLoadInterstitial()
+        
+//        interstitial = createAndLoadInterstitial()
+//        interstitial.delegate = self
+//
+//        interstitial.load(request)
+//
         
         
       //  startScreamTracker()
@@ -922,12 +928,12 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
     
     func createAndLoadInterstitial() -> GADInterstitial {
-//        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910") // testowy interistetial admob
+        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910") // testowy interistetial admob
 //        interstitial = GADInterstitial(adUnitID: "ca-app-pub-8857410705016797/3847300079") //  moj admob
         
-        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910") //testowy video interisitial admob
+//        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910") //testowy video interisitial admob
         interstitial.delegate = self
-        interstitial.load(GADRequest())
+        interstitial.load(request)
         return interstitial
     }
     
