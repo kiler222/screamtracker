@@ -12,7 +12,7 @@
 /*
 lokalizacje!!!!
  
- 
+ bug gdy zrobię stop, przekroczę limit scream i zrobie start
  
  
 */

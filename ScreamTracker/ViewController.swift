@@ -17,6 +17,17 @@ import Crashlytics
 class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDelegate, AVAudioPlayerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     
+    @IBAction func backToFirstViewController(_ sender: Any) {
+    
+//        timerForAverageDB.invalidate()
+//        timerForAverageDB = nil
+        stopAndBack()
+        dismiss(animated: true, completion: nil)
+    
+    }
+    
+    
+    
     @IBOutlet weak var tableView: UITableView!
     let cellReuseIdentifier = "ScreamTableViewCell"
     
@@ -39,6 +50,8 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     var x: Int = 0 //counter do uzupełniania wykresu próbek
     var daneDecybele: [Double] = []
     var isFirstRun = true
+    
+    var pierwszyRaz = 0
     
     var dictOfAudioFloat = [String:[Float]]()
     
@@ -125,13 +138,22 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         tableView.rowHeight = 90;
         
         
+//        print("które wejscie: \(pierwszyRaz)")
+//        pierwszyRaz += 1
+//
+    //    mic = AKMicrophone()
         
         AKSettings.audioInputEnabled = true
         micMixer = AKMixer(mic)
+        
         tracker = AKFrequencyTracker(micMixer)
         silence = AKBooster(tracker, gain: 0)
-       // print("2-----------")
+        print("-----------")
+     //   usleep(200000)
+        // tutaj było startCalculatingAverageDB()
+        
         startCalculatingAverageDB()
+        
         
         // Clean tempFiles !
         AKAudioFile.cleanTempDirectory()
@@ -156,11 +178,17 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         }
        
         
+//        sleep(5)
+     //   print("Tracker ampluted -------------- \(tracker.amplitude)")
+//        repeat {
+//            //usleep(10000) //czekamy az zakończy się export pliku
+//             print("Tracker ampluted -------------- \(tracker.amplitude)")
+//            sleep(1)
+//        } while tracker.amplitude == 0.0
+//
         
+       
         
-    //    averageDB = (70 + convertAmplitudeToDb(amp: tracker.amplitude))
-        
-        //chart views configuration:
       
         averageLimit.lineColor = .green
         averageLimit.lineWidth = 1
@@ -223,18 +251,19 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         bannerView.load(request)
         bannerView.delegate = self
         
-        createAndLoadInterstitial()
         
-//        interstitial = createAndLoadInterstitial()
-//        interstitial.delegate = self
-//
-//        interstitial.load(request)
-//
+        interstitial = createAndLoadInterstitial()
+        interstitial.delegate = self
+        interstitial.load(request)
+
+//        repeat {
+//                        //usleep(10000) //czekamy az zakończy się export pliku
+//                         print("Tracker ampluted -------------- \(tracker.amplitude)")
+//                        sleep(1)
+//                    } while tracker.amplitude == 0.0
+ 
+//        startScreamTracker()
         
-        
-      //  startScreamTracker()
-      //  screamLimitLine.limit =  averageDB + 30
-        //   screamDetectionLevel = screamLimitLine.limit
         
     }
     
@@ -245,16 +274,13 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         let touchPointY = recognizer.location(in: lineChartView).y
          isPlayingScream = true
         
-//        if let view = recognizer.view {
-
-        //    let convertedScreamLimitLine = (142 - 13 - screamLimitLine.limit * (142 - 13) / 100)
         
                     if Double((142 - 13 - Double(touchPointY))*100 / (142-13)) > averageLimit.limit + 3 && Double((142 - 13 - Double(touchPointY))*100 / (142-13)) < 95 {
                         
                     
                     
                     screamLimitLine.limit = Double((142 - 13 - Double(touchPointY))*100 / (142-13))
-//                    print("w granicach - touchpoint: \(touchedPointY) convLL: \(convertedScreamLimitLine) screamLL: \(screamLimitLine.limit)")
+
                         isScreamLimitSetAverage = false
                     } else if Double((142 - 13 - Double(touchPointY))*100 / (142-13)) < averageLimit.limit + 3 {
                         screamLimitLine.limit = averageLimit.limit + 3
@@ -267,12 +293,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
 //                        print("wjechane powyzej 95")
                     }
                     
-//                    print(translation.y)
-//                    print(Double(((142 - 13 - translation.y) / (142-13))))
-                
-          //      }
-         //   }
-//        }
+        
         
         recognizer.setTranslation(CGPoint.zero, in: lineChartView)
         screamDetectionLevel = Double(screamLimitLine.limit)
@@ -350,6 +371,8 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
 
     
 
+    
+    
     func setChart() {
         
         
@@ -404,10 +427,12 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
     }
     
+    
+    
     func startScreamTracker(){
         
         if isScreamTrackerRunning == false{
-        //    startCalculatingAverageDB()
+        
             
             do {
                 try recorder.reset()
@@ -546,13 +571,45 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
 //        timerForAverageDB = nil
         
         isScreamTrackerRunning = false
-      //  screamDetectionLevel = 80
+
+    }
+    
+    func stopAndBack(){
+       
+        if timerForDrawingPlot != nil {
+            timerForDrawingPlot.invalidate()
+            timerForDrawingPlot = nil
+        }
         
-//        print("\(audioDataArray.count)")
+        if timerForScreamDetection != nil {
+            timerForScreamDetection.invalidate()
+            timerForScreamDetection = nil
+        }
         
+        if timerForAverageDB != nil {
+            timerForAverageDB.invalidate()
+            timerForAverageDB = nil
+        }
+        
+//
+        if recorder.isRecording {
+            recorder.stop()
+            }
+//            tracker.detach()
+      //  micMixer.detach()
+//        mic.detach()
+//        silence.detach()
+//        player.detach()
+        
+        do {
+            try AudioKit.stop()
+        } catch {
+            AKLog("AudioKit did not start!")
+        }
         
         
     }
+    
     
  /*
     func playScream(audioFileName: String){
@@ -629,9 +686,8 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
  */
     
     func playScream2(audioFileName: String){
-//        var player: AKPlayer!
-//        var mixloop: AKAudioFile!
-//
+
+
         var filePath: String!
         
         isPlayingScream = true
@@ -673,10 +729,6 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         } catch let error{
             print(error)
         }
-
-//        sound.stop()
-
-
 
 //        print("duration: \(sound.duration)")
         isPlayingScream = false
@@ -743,7 +795,10 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     }
     
     @objc func calculateAverageDB() {
-        
+       
+      //  print("w calculateAveragaDB")
+        if tracker.amplitude != 0 {
+         
         if averageCounter < 10 {
         tempAverageDB.append(70 + convertAmplitudeToDb(amp: tracker.amplitude))
             
@@ -754,18 +809,15 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
             averageCounter += 1
 
         } else {
+         //   print(tempAverageDB)
             averageDB = tempAverageDB.reduce(0, +) / tempAverageDB.count
-//            print("average: \(averageDB)")
-            
+            print("average: \(String(describing: averageDB))")
             averageCounter = 0
         
-//        limitAverageDB.append(averageDB)
-//            if limitAverageDB.count > chartPoints{
-//                limitAverageDB.remove(at: 0)
-//            }
-//            print(limitAverageDB.last!)
         }
-        
+        } else {
+    //       print("w ifie że tracker.amplitue = 0")
+        }
     }
     
     @objc func updateUI() {
@@ -813,11 +865,13 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
         if isScreamLimitSetAverage == true {
                 screamLimitLine.limit = averageLimit.limit + 3
+            screamDetectionLevel = Double(screamLimitLine.limit)
         }
 //
      //   if isPlayingScream == false {
             if screamLimitLine.limit-averageLimit.limit < 2 {
                 screamLimitLine.limit = averageLimit.limit + 3
+                screamDetectionLevel = Double(screamLimitLine.limit)
             }
 //        }
         

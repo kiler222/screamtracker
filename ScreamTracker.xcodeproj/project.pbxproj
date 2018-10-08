@@ -15,6 +15,7 @@
 		E527BBFA21447925007BB2B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E527BBF821447925007BB2B1 /* LaunchScreen.storyboard */; };
 		E547F6D32152F33F00B31E9B /* ScreamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547F6D22152F33F00B31E9B /* ScreamTableViewCell.swift */; };
 		E570A82221622D4D00178CB5 /* toDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E570A82121622D4D00178CB5 /* toDo.swift */; };
+		E57F7ECC216B628F006FE313 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F7ECB216B628F006FE313 /* StartViewController.swift */; };
 		E5A40612215D740B004C1004 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E5A40611215D740B004C1004 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		E547F6D22152F33F00B31E9B /* ScreamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreamTableViewCell.swift; sourceTree = "<group>"; };
 		E570A82121622D4D00178CB5 /* toDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toDo.swift; sourceTree = "<group>"; };
 		E570A8232162BBC700178CB5 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "../../../Downloads/AudioKit-4.5.0/Frameworks/AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
+		E57F7ECB216B628F006FE313 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		E5A40611215D740B004C1004 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +99,7 @@
 				E527BBFB21447925007BB2B1 /* Info.plist */,
 				E5A40611215D740B004C1004 /* GoogleService-Info.plist */,
 				E570A82121622D4D00178CB5 /* toDo.swift */,
+				E57F7ECB216B628F006FE313 /* StartViewController.swift */,
 			);
 			path = ScreamTracker;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E57F7ECC216B628F006FE313 /* StartViewController.swift in Sources */,
 				E547F6D32152F33F00B31E9B /* ScreamTableViewCell.swift in Sources */,
 				E527BBF22144791F007BB2B1 /* ViewController.swift in Sources */,
 				E527BBF02144791F007BB2B1 /* AppDelegate.swift in Sources */,
