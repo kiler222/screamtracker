@@ -21,28 +21,35 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
 //        timerForAverageDB.invalidate()
 //        timerForAverageDB = nil
-        stopAndBack()
-        dismiss(animated: true, completion: nil)
+        
+        let alert = UIAlertController(title: "Stop tracking screams?", message: "You lost your unsaved screams.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            print("koniec trackingu")
+             self.stopAndBack()
+             self.dismiss(animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true)
+        
+       
     
     }
+    
+    
+ 
     
     
     
     @IBOutlet weak var tableView: UITableView!
     let cellReuseIdentifier = "ScreamTableViewCell"
     
-    
-    @IBOutlet weak var screamTrackerButton: UIButton!
-    
-    @IBOutlet weak var drawWaveform: UIView!
-    
+
     
     @IBOutlet weak var lineChartView: LineChartView!
     
-    
-    @IBOutlet weak var recordedSessionChartView: LineChartView!
-    
-    var datas = [String]()
+     var datas = [String]()
     var duration = [Double]()
     var timeStamp = [String]()
     
@@ -177,19 +184,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
             player = AKPlayer(audioFile: file)
         }
        
-        
-//        sleep(5)
-     //   print("Tracker ampluted -------------- \(tracker.amplitude)")
-//        repeat {
-//            //usleep(10000) //czekamy az zakończy się export pliku
-//             print("Tracker ampluted -------------- \(tracker.amplitude)")
-//            sleep(1)
-//        } while tracker.amplitude == 0.0
-//
-        
-       
-        
-      
+
         averageLimit.lineColor = .green
         averageLimit.lineWidth = 1
         averageLimit.drawLabelEnabled = false
@@ -256,13 +251,12 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         interstitial.delegate = self
         interstitial.load(request)
 
-//        repeat {
-//                        //usleep(10000) //czekamy az zakończy się export pliku
-//                         print("Tracker ampluted -------------- \(tracker.amplitude)")
-//                        sleep(1)
-//                    } while tracker.amplitude == 0.0
- 
-//        startScreamTracker()
+       
+        ProgressHUD.show()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+            self.startScreamTracker()
+        })
         
         
     }
@@ -321,6 +315,25 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         cell.timeStamp?.text = "Detected: \(timeStamp[indexPath.row])"
      
         cell.setChartInCell(audioData: dictOfAudioFloat[audioFilenames[indexPath.row]]!, points: 350)
+        
+        // Standard options
+        //cell.accessoryType = UITableViewCell.AccessoryType.none
+//        cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+//        cell.accessoryType = UITableViewCell.AccessoryType.detailDisclosureButton
+        //cell.accessoryType = UITableViewCell.AccessoryType.checkmark
+        //cell.accessoryType = UITableViewCell.AccessoryType.detailButton
+        
+//        cell.accessoryType = UITableViewCell.AccessoryType.none
+        
+        
+        let cellAudioButton = UIButton(type: .custom)
+        cellAudioButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+      //  cellAudioButton.addTarget(self, action: #selector(ViewController.accessoryButtonTapped(sender:)), for: .touchUpInside)
+        cellAudioButton.setImage(UIImage(named: "save"), for: .normal)
+        cellAudioButton.contentMode = .scaleAspectFit
+        cellAudioButton.tag = indexPath.row
+        cell.accessoryView = cellAudioButton as UIView
+        
         
         return cell
     }
@@ -421,16 +434,21 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
     
     @IBAction func screamTrackerButton(_ sender: UIButton) {
+        ProgressHUD.show()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+             self.startScreamTracker()
+        })
         
-        startScreamTracker()
         
+       
         
     }
     
     
     
     func startScreamTracker(){
-        
+        print(">>>>>>>averageDB: \(String(describing: averageDB))")
         if isScreamTrackerRunning == false{
         
             
@@ -441,11 +459,12 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
             }
             
            // resetCharts()
-
+           
+            ProgressHUD.dismiss()
             startScreamTrackerPlot() //updateUI
             screamDetectionTimer()
             isScreamTrackerRunning = true
-            screamTrackerButton.setTitle("Stop Scream Tracker", for: .normal)
+         //   screamTrackerButton.setTitle("Stop Scream Tracker", for: .normal)
             do {
                 try recorder.record()
             } catch {
@@ -486,11 +505,11 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         }
         
         
-        
         repeat {
             usleep(10000) //czekamy az zakończy się export pliku
            
         } while exportFinished != true
+        
         
         exportFinished = false
         addRowWithScream()
@@ -503,6 +522,21 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
             let fileManager = FileManager.default
             if fileManager.fileExists(atPath: filePath) {
                 print("FILE AVAILABLE")
+                print(filePath)
+                print(path)
+                
+                do {
+                    let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+                    let documentDirectory = URL(fileURLWithPath: path)
+                  
+                      let originPath = documentDirectory.appendingPathComponent(audioFileName)
+                    let destinationPath = documentDirectory.appendingPathComponent("test\(audioFileName)")
+                    try FileManager.default.copyItem(at: originPath, to: destinationPath)
+                } catch {
+                    print(error)
+                }
+                
+                
             } else {
                 print("FILE NOT AVAILABLE")
             }
@@ -562,7 +596,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
     func stopScreamTrackerPlot(){
         
-        screamTrackerButton.setTitle("Start Scream Tracker", for: .normal)
+     //   screamTrackerButton.setTitle("Start Scream Tracker", for: .normal)
         timerForDrawingPlot.invalidate()
         timerForDrawingPlot = nil
         timerForScreamDetection.invalidate()
@@ -738,7 +772,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
         print("koniec grania")
-        usleep(200000)
+        usleep(300000)
         if playCounts > 3{ //po ilu odtworzeniach ma być wyświetlony interstitial
             if interstitial.isReady {
                 interstitial.present(fromRootViewController: self)

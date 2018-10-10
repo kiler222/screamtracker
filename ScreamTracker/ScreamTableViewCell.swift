@@ -50,11 +50,6 @@ class ScreamTableViewCell: UITableViewCell {
             
         }
         
-        
-        
-        
-        
-        
         let chartDataSet = LineChartDataSet(values: dataEntries, label: "dB")
         chartDataSet.colors = [UIColor.red]
         
@@ -66,11 +61,8 @@ class ScreamTableViewCell: UITableViewCell {
         chartDataSet.fillColor = .red
         chartDataSet.lineWidth = 2
         //  chartDataSet.cubicIntensity = 0.1
-        
-        
         chartData.addDataSet(chartDataSet)
         chartData.setDrawValues(false)
-        
         screamChartView.data = chartData
    //     screamChartView.backgroundColor = .gray
         screamChartView.xAxis.drawGridLinesEnabled = false

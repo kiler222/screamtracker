@@ -19,36 +19,50 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcW-Dv-RUZ">
-                                <rect key="frame" x="64" y="76" width="192" height="38"/>
+                                <rect key="frame" x="64" y="253" width="192" height="38"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
                                 <state key="normal" title="Start Scream Tracker"/>
                                 <connections>
                                     <action selector="goToScreamTracking:" destination="uTs-Ca-nU8" eventType="touchUpInside" id="CV4-ss-Npu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ea-mg-VSo">
-                                <rect key="frame" x="86.5" y="264" width="147" height="38"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ea-mg-VSo">
+                                <rect key="frame" x="87" y="332" width="147" height="38"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
                                 <state key="normal" title="Saved Screams"/>
+                                <connections>
+                                    <action selector="toToSavedScreams:" destination="uTs-Ca-nU8" eventType="touchUpInside" id="S6l-wK-xo4"/>
+                                </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="scream" translatesAutoresizingMaskIntoConstraints="NO" id="Oke-Eq-pe6">
+                                <rect key="frame" x="59" y="40" width="202" height="158"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="202" id="9iA-yS-d4Q"/>
+                                    <constraint firstAttribute="height" constant="158" id="EaM-Tb-BGS"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="dcW-Dv-RUZ" firstAttribute="top" secondItem="ATo-6O-koI" secondAttribute="top" constant="56" id="0eL-ad-kMe"/>
+                            <constraint firstItem="8ea-mg-VSo" firstAttribute="centerX" secondItem="dcW-Dv-RUZ" secondAttribute="centerX" id="Buj-Uh-PUl"/>
+                            <constraint firstItem="Oke-Eq-pe6" firstAttribute="top" secondItem="ATo-6O-koI" secondAttribute="top" constant="20" id="F74-S8-V14"/>
                             <constraint firstItem="dcW-Dv-RUZ" firstAttribute="centerX" secondItem="VkA-Rv-EcU" secondAttribute="centerX" id="Sx8-nz-b7y"/>
-                            <constraint firstItem="8ea-mg-VSo" firstAttribute="centerX" secondItem="VkA-Rv-EcU" secondAttribute="centerX" id="e7M-L5-kmG"/>
-                            <constraint firstItem="8ea-mg-VSo" firstAttribute="top" secondItem="dcW-Dv-RUZ" secondAttribute="bottom" constant="150" id="qBD-bY-kNr"/>
+                            <constraint firstItem="8ea-mg-VSo" firstAttribute="top" secondItem="dcW-Dv-RUZ" secondAttribute="bottom" constant="41" id="Yt6-7g-yz5"/>
+                            <constraint firstItem="dcW-Dv-RUZ" firstAttribute="top" secondItem="Oke-Eq-pe6" secondAttribute="bottom" constant="55" id="jP4-0Y-hO8"/>
+                            <constraint firstItem="Oke-Eq-pe6" firstAttribute="centerX" secondItem="VkA-Rv-EcU" secondAttribute="centerX" id="m50-jY-TPP"/>
+                            <constraint firstItem="8ea-mg-VSo" firstAttribute="leading" secondItem="ATo-6O-koI" secondAttribute="leading" constant="87" id="pux-cD-Q0s"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ATo-6O-koI"/>
                     </view>
                     <navigationItem key="navigationItem" id="n63-rC-Y64"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="goToScreamTracking" id="IgI-zX-VaM"/>
+                        <segue destination="RNM-Nw-SDc" kind="presentation" identifier="goToSavedScreams" id="4oU-sD-hhl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4y-aV-rr7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="313.125" y="-341.19718309859155"/>
+            <point key="canvasLocation" x="249.375" y="-467.95774647887322"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -58,14 +72,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRi-7T-vJE">
-                                <rect key="frame" x="64" y="20" width="192" height="38"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
-                                <state key="normal" title="Start Scream Tracker"/>
-                                <connections>
-                                    <action selector="screamTrackerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3dZ-kA-WZc"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dhk-r3-rPW" customClass="LineChartView" customModule="Charts">
                                 <rect key="frame" x="0.0" y="66" width="320" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -95,22 +101,17 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="baseline_play_circle_outline_black_36pt" translatesAutoresizingMaskIntoConstraints="NO" id="F8j-On-Rbn">
-                                                    <rect key="frame" x="15" y="42" width="36" height="36"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <view userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="SDs-j1-yCm" customClass="LineChartView" customModule="Charts">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="149.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="SDs-j1-yCm" secondAttribute="trailing" id="N4t-Z7-jhC"/>
                                                 <constraint firstAttribute="trailing" secondItem="3EY-bV-EMp" secondAttribute="trailing" constant="20" id="SIM-lc-cFd"/>
                                                 <constraint firstItem="SDs-j1-yCm" firstAttribute="top" secondItem="HWS-mC-qFu" secondAttribute="top" id="Ts3-A3-IrB"/>
-                                                <constraint firstItem="SDs-j1-yCm" firstAttribute="centerX" secondItem="HWS-mC-qFu" secondAttribute="centerX" id="fBj-Ux-lTL"/>
                                                 <constraint firstItem="SDs-j1-yCm" firstAttribute="centerY" secondItem="HWS-mC-qFu" secondAttribute="centerY" id="nGb-L9-2oO"/>
                                                 <constraint firstItem="3EY-bV-EMp" firstAttribute="top" secondItem="HWS-mC-qFu" secondAttribute="top" id="nYS-9y-KXi"/>
+                                                <constraint firstAttribute="trailing" secondItem="SDs-j1-yCm" secondAttribute="trailing" id="tRk-ap-TVi"/>
                                                 <constraint firstItem="3EY-bV-EMp" firstAttribute="leading" secondItem="HWS-mC-qFu" secondAttribute="leading" id="w3z-HM-zE3"/>
                                                 <constraint firstItem="SDs-j1-yCm" firstAttribute="leading" secondItem="HWS-mC-qFu" secondAttribute="leading" id="zO1-G8-xFa"/>
                                             </constraints>
@@ -137,25 +138,23 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="iRi-7T-vJE" firstAttribute="top" secondItem="20S-KO-fcW" secondAttribute="top" id="3VP-f2-pZw"/>
+                            <constraint firstItem="dhk-r3-rPW" firstAttribute="top" secondItem="kTa-uA-8x3" secondAttribute="bottom" constant="14.5" id="80V-xc-F9M"/>
                             <constraint firstItem="kTa-uA-8x3" firstAttribute="leading" secondItem="20S-KO-fcW" secondAttribute="leading" constant="20" id="BNr-5z-slA"/>
-                            <constraint firstItem="iRi-7T-vJE" firstAttribute="centerY" secondItem="kTa-uA-8x3" secondAttribute="centerY" id="BPy-sY-sNa"/>
                             <constraint firstItem="JqV-Tb-MFW" firstAttribute="top" secondItem="dhk-r3-rPW" secondAttribute="bottom" id="DYn-Bg-SxP"/>
                             <constraint firstItem="dhk-r3-rPW" firstAttribute="leading" secondItem="20S-KO-fcW" secondAttribute="leading" id="E4T-Mf-K3N"/>
                             <constraint firstItem="JqV-Tb-MFW" firstAttribute="centerX" secondItem="20S-KO-fcW" secondAttribute="centerX" id="FrQ-Qj-dkn"/>
                             <constraint firstItem="JqV-Tb-MFW" firstAttribute="bottom" secondItem="20S-KO-fcW" secondAttribute="bottom" constant="-50" id="GOL-8p-5oP"/>
+                            <constraint firstItem="kTa-uA-8x3" firstAttribute="top" secondItem="20S-KO-fcW" secondAttribute="top" constant="6.5" id="JJj-9I-Jqj"/>
+                            <constraint firstItem="JqV-Tb-MFW" firstAttribute="top" secondItem="dhk-r3-rPW" secondAttribute="bottom" id="NDC-82-Dia"/>
                             <constraint firstItem="20S-KO-fcW" firstAttribute="trailing" secondItem="dhk-r3-rPW" secondAttribute="trailing" id="Q0N-68-tJf"/>
                             <constraint firstItem="JqV-Tb-MFW" firstAttribute="leading" secondItem="20S-KO-fcW" secondAttribute="leading" id="QQl-6f-PSA"/>
                             <constraint firstItem="JqV-Tb-MFW" firstAttribute="trailing" secondItem="20S-KO-fcW" secondAttribute="trailing" id="WCq-Ls-G0v"/>
-                            <constraint firstItem="dhk-r3-rPW" firstAttribute="top" secondItem="iRi-7T-vJE" secondAttribute="bottom" constant="8" id="c55-dZ-XoY"/>
-                            <constraint firstItem="iRi-7T-vJE" firstAttribute="centerX" secondItem="20S-KO-fcW" secondAttribute="centerX" id="gYV-OT-DCv"/>
                             <constraint firstItem="dhk-r3-rPW" firstAttribute="centerX" secondItem="20S-KO-fcW" secondAttribute="centerX" id="uug-9J-89w"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="20S-KO-fcW"/>
                     </view>
                     <connections>
                         <outlet property="lineChartView" destination="dhk-r3-rPW" id="ACU-i3-S5L"/>
-                        <outlet property="screamTrackerButton" destination="iRi-7T-vJE" id="Um2-vD-zOv"/>
                         <outlet property="tableView" destination="JqV-Tb-MFW" id="cbs-tc-Rpm"/>
                     </connections>
                 </viewController>
@@ -168,9 +167,42 @@
             </objects>
             <point key="canvasLocation" x="1200" y="-341.19718309859155"/>
         </scene>
+        <!--Saved Screams View Controller-->
+        <scene sceneID="JlR-ky-Y2E">
+            <objects>
+                <viewController id="RNM-Nw-SDc" customClass="SavedScreamsViewController" customModule="ScreamTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gso-fp-dyd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6t-jB-S57">
+                                <rect key="frame" x="20" y="40" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="Lxg-R2-6eA"/>
+                                    <constraint firstAttribute="height" constant="25" id="SVl-KJ-FPe"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="8m5-aI-FOX"/>
+                                <state key="normal" image="icons8-back-to-50"/>
+                                <connections>
+                                    <action selector="backtoFirstViewController:" destination="RNM-Nw-SDc" eventType="touchUpInside" id="yL0-ZK-ra2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="E6t-jB-S57" firstAttribute="top" secondItem="mOd-m5-pWf" secondAttribute="top" constant="20" id="Sgd-58-Uq3"/>
+                            <constraint firstItem="E6t-jB-S57" firstAttribute="leading" secondItem="mOd-m5-pWf" secondAttribute="leading" constant="20" id="gA6-1E-ReK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mOd-m5-pWf"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f5Z-Jd-FEI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1200" y="-1115"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="baseline_play_circle_outline_black_36pt" width="36" height="36"/>
         <image name="icons8-back-to-50" width="50" height="50"/>
+        <image name="scream" width="256" height="256"/>
     </resources>
 </document>

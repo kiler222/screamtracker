@@ -16,6 +16,9 @@
 		E547F6D32152F33F00B31E9B /* ScreamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547F6D22152F33F00B31E9B /* ScreamTableViewCell.swift */; };
 		E570A82221622D4D00178CB5 /* toDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E570A82121622D4D00178CB5 /* toDo.swift */; };
 		E57F7ECC216B628F006FE313 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F7ECB216B628F006FE313 /* StartViewController.swift */; };
+		E57F7ED2216CA8F4006FE313 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E57F7ECF216CA8F3006FE313 /* ProgressHUD.bundle */; };
+		E57F7ED3216CA8F4006FE313 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E57F7ED0216CA8F3006FE313 /* ProgressHUD.m */; };
+		E57F7ED5216E04CB006FE313 /* SavedScreamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F7ED4216E04CB006FE313 /* SavedScreamsViewController.swift */; };
 		E5A40612215D740B004C1004 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E5A40611215D740B004C1004 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +39,11 @@
 		E570A82121622D4D00178CB5 /* toDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toDo.swift; sourceTree = "<group>"; };
 		E570A8232162BBC700178CB5 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "../../../Downloads/AudioKit-4.5.0/Frameworks/AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
 		E57F7ECB216B628F006FE313 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		E57F7ECE216CA8F1006FE313 /* ScreamTracker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScreamTracker-Bridging-Header.h"; sourceTree = "<group>"; };
+		E57F7ECF216CA8F3006FE313 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
+		E57F7ED0216CA8F3006FE313 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
+		E57F7ED1216CA8F4006FE313 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
+		E57F7ED4216E04CB006FE313 /* SavedScreamsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedScreamsViewController.swift; sourceTree = "<group>"; };
 		E5A40611215D740B004C1004 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +80,7 @@
 		E527BBE32144791F007BB2B1 = {
 			isa = PBXGroup;
 			children = (
+				E57F7ECD216CA8AE006FE313 /* Supporting Files */,
 				E527BBEE2144791F007BB2B1 /* ScreamTracker */,
 				E527BBED2144791F007BB2B1 /* Products */,
 				8DE2291A28456668DC25F3D5 /* Pods */,
@@ -92,6 +101,7 @@
 			children = (
 				E527BBEF2144791F007BB2B1 /* AppDelegate.swift */,
 				E527BBF12144791F007BB2B1 /* ViewController.swift */,
+				E57F7ED4216E04CB006FE313 /* SavedScreamsViewController.swift */,
 				E547F6D22152F33F00B31E9B /* ScreamTableViewCell.swift */,
 				E527BBF32144791F007BB2B1 /* Main.storyboard */,
 				E527BBF621447925007BB2B1 /* Assets.xcassets */,
@@ -102,6 +112,17 @@
 				E57F7ECB216B628F006FE313 /* StartViewController.swift */,
 			);
 			path = ScreamTracker;
+			sourceTree = "<group>";
+		};
+		E57F7ECD216CA8AE006FE313 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E57F7ECF216CA8F3006FE313 /* ProgressHUD.bundle */,
+				E57F7ED1216CA8F4006FE313 /* ProgressHUD.h */,
+				E57F7ED0216CA8F3006FE313 /* ProgressHUD.m */,
+				E57F7ECE216CA8F1006FE313 /* ScreamTracker-Bridging-Header.h */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,6 +190,7 @@
 				E527BBFA21447925007BB2B1 /* LaunchScreen.storyboard in Resources */,
 				E5A40612215D740B004C1004 /* GoogleService-Info.plist in Resources */,
 				E527BBF721447925007BB2B1 /* Assets.xcassets in Resources */,
+				E57F7ED2216CA8F4006FE313 /* ProgressHUD.bundle in Resources */,
 				E527BBF52144791F007BB2B1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,12 +240,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-ScreamTracker/Pods-ScreamTracker-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,7 +262,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E57F7ED3216CA8F4006FE313 /* ProgressHUD.m in Sources */,
 				E57F7ECC216B628F006FE313 /* StartViewController.swift in Sources */,
+				E57F7ED5216E04CB006FE313 /* SavedScreamsViewController.swift in Sources */,
 				E547F6D32152F33F00B31E9B /* ScreamTableViewCell.swift in Sources */,
 				E527BBF22144791F007BB2B1 /* ViewController.swift in Sources */,
 				E527BBF02144791F007BB2B1 /* AppDelegate.swift in Sources */,
@@ -391,6 +417,7 @@
 			baseConfigurationReference = E2F181FB35D5A80786B5E1A2 /* Pods-ScreamTracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 4F25NTVE7X;
@@ -399,6 +426,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kiler.screamtracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Supporting Files/ScreamTracker-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -409,6 +438,7 @@
 			baseConfigurationReference = 3D574A226CBE69F600B2CFBB /* Pods-ScreamTracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4F25NTVE7X;
 				INFOPLIST_FILE = "$(SRCROOT)/ScreamTracker/Info.plist";
@@ -416,6 +446,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kiler.screamtracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Supporting Files/ScreamTracker-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

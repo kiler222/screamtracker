@@ -12,10 +12,14 @@ class StartViewController: UIViewController {
 
    var licznik = 0
     
+    @IBAction func toToSavedScreams(_ sender: Any) {
+        performSegue(withIdentifier: "goToSavedScreams", sender: self)
+    }
+    
+    
+    
     @IBAction func goToScreamTracking(_ sender: Any) {
     performSegue(withIdentifier: "goToScreamTracking", sender: self)
-    licznik += 1
-        print("licznik: \(licznik)")
     }
     
     override func viewDidLoad() {
