@@ -19,6 +19,7 @@
 		E57F7ED2216CA8F4006FE313 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E57F7ECF216CA8F3006FE313 /* ProgressHUD.bundle */; };
 		E57F7ED3216CA8F4006FE313 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E57F7ED0216CA8F3006FE313 /* ProgressHUD.m */; };
 		E57F7ED5216E04CB006FE313 /* SavedScreamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F7ED4216E04CB006FE313 /* SavedScreamsViewController.swift */; };
+		E57F7ED7216FF24B006FE313 /* SavedScreamsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F7ED6216FF24B006FE313 /* SavedScreamsTableViewCell.swift */; };
 		E5A40612215D740B004C1004 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E5A40611215D740B004C1004 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		E57F7ED0216CA8F3006FE313 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		E57F7ED1216CA8F4006FE313 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		E57F7ED4216E04CB006FE313 /* SavedScreamsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedScreamsViewController.swift; sourceTree = "<group>"; };
+		E57F7ED6216FF24B006FE313 /* SavedScreamsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedScreamsTableViewCell.swift; sourceTree = "<group>"; };
 		E5A40611215D740B004C1004 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,8 +102,10 @@
 			isa = PBXGroup;
 			children = (
 				E527BBEF2144791F007BB2B1 /* AppDelegate.swift */,
+				E57F7ECB216B628F006FE313 /* StartViewController.swift */,
 				E527BBF12144791F007BB2B1 /* ViewController.swift */,
 				E57F7ED4216E04CB006FE313 /* SavedScreamsViewController.swift */,
+				E57F7ED6216FF24B006FE313 /* SavedScreamsTableViewCell.swift */,
 				E547F6D22152F33F00B31E9B /* ScreamTableViewCell.swift */,
 				E527BBF32144791F007BB2B1 /* Main.storyboard */,
 				E527BBF621447925007BB2B1 /* Assets.xcassets */,
@@ -109,7 +113,6 @@
 				E527BBFB21447925007BB2B1 /* Info.plist */,
 				E5A40611215D740B004C1004 /* GoogleService-Info.plist */,
 				E570A82121622D4D00178CB5 /* toDo.swift */,
-				E57F7ECB216B628F006FE313 /* StartViewController.swift */,
 			);
 			path = ScreamTracker;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				E547F6D32152F33F00B31E9B /* ScreamTableViewCell.swift in Sources */,
 				E527BBF22144791F007BB2B1 /* ViewController.swift in Sources */,
 				E527BBF02144791F007BB2B1 /* AppDelegate.swift in Sources */,
+				E57F7ED7216FF24B006FE313 /* SavedScreamsTableViewCell.swift in Sources */,
 				E570A82221622D4D00178CB5 /* toDo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

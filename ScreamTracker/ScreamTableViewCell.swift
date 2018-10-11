@@ -31,14 +31,11 @@ class ScreamTableViewCell: UITableViewCell {
     }
     
     
+
     
     func setChartInCell(audioData: [Float], points: Int) {
         
-        
-        
         var dataEntries: [ChartDataEntry] = []
-        
-     //   print("w setChartInCell ilość próbek: \(audioData.count)")
         
         for i in 0..<audioData.count {
             

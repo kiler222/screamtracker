@@ -33,6 +33,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
         self.present(alert, animated: true)
         
+        print(dictForSavedScreams)
        
     
     }
@@ -62,6 +63,8 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
     var dictOfAudioFloat = [String:[Float]]()
     
+    var dictForSavedScreams = [String : String]()
+    
     var oneExtraStepWithoutScream: Int = 0
     var exportFinished: Bool = false
     var isScreamTrackerRunning: Bool = false
@@ -77,7 +80,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     var numbersOfScreams: Int = 0
     var audioFilenames: [String] = []
     var playCounts = 0 //ile razy został odtworzony dzwiek, potrzebne do wyświetlania reklam interstitial
-    
+    var tagsForHidden: [String] = []
     var averageCounter = 0
     
     var tempAverageDB: [Double] = []
@@ -130,13 +133,10 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     override func viewDidLoad() {
         super.viewDidLoad()
       
-//        do {
-//            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default)
-//            try AVAudioSession.sharedInstance().setActive(true)
-//        } catch {
-//            print(error)
-//        }
         
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let documentDirectory = URL(fileURLWithPath: path)
+        print(documentDirectory)
         
         // This view controller itself will provide the delegate methods and row data for the table view.
         tableView.delegate = self
@@ -316,33 +316,62 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
      
         cell.setChartInCell(audioData: dictOfAudioFloat[audioFilenames[indexPath.row]]!, points: 350)
         
-        // Standard options
-        //cell.accessoryType = UITableViewCell.AccessoryType.none
-//        cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
-//        cell.accessoryType = UITableViewCell.AccessoryType.detailDisclosureButton
-        //cell.accessoryType = UITableViewCell.AccessoryType.checkmark
-        //cell.accessoryType = UITableViewCell.AccessoryType.detailButton
-        
-//        cell.accessoryType = UITableViewCell.AccessoryType.none
-        
+  
         
         let cellAudioButton = UIButton(type: .custom)
         cellAudioButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-      //  cellAudioButton.addTarget(self, action: #selector(ViewController.accessoryButtonTapped(sender:)), for: .touchUpInside)
+        cellAudioButton.addTarget(self, action: #selector(ViewController.accessoryButtonTapped(sender:)), for: .touchUpInside)
         cellAudioButton.setImage(UIImage(named: "save"), for: .normal)
         cellAudioButton.contentMode = .scaleAspectFit
         cellAudioButton.tag = indexPath.row
+        if tagsForHidden.contains(audioFilenames[indexPath.row]){
+            cellAudioButton.isHidden = true
+        }
+//        print("indexpath.row: \(indexPath.row)")
         cell.accessoryView = cellAudioButton as UIView
         
         
         return cell
     }
     
+
+    
+    
+    @objc func accessoryButtonTapped(sender : UIButton){
+        print("sender.tag: \(sender.tag)")
+    
+        let number = Int.random(in: 100000000 ... 999999999)
+                        do {
+                            let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+                            let documentDirectory = URL(fileURLWithPath: path)
+
+                              let originPath = documentDirectory.appendingPathComponent(audioFilenames[sender.tag])
+                            print(originPath)
+//                            let destinationPath = documentDirectory.appendingPathComponent("saved\(audioFilenames[sender.tag])")
+                            let destinationPath = documentDirectory.appendingPathComponent("\(number).m4a")
+                            print(destinationPath)
+                            try FileManager.default.copyItem(at: originPath, to: destinationPath)
+                        } catch {
+                            print(error)
+                        }
+        
+        print(timeStamp[sender.tag])
+        
+        dictForSavedScreams[audioFilenames[sender.tag]] = timeStamp[sender.tag]
+        
+        tagsForHidden.append(audioFilenames[sender.tag])
+        sender.isHidden = true
+        ProgressHUD.showSuccess("Scream saved!")
+        
+    }
+    
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
      //   print(audioFilenames)
         print("You tapped cell number \(indexPath.row).")
         playScream2(audioFileName: audioFilenames[indexPath.row])
-     //   print(audioFilenames[indexPath.row])
+        print(audioFilenames[indexPath.row])
         
         
     }
@@ -371,14 +400,36 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
             
             // handle delete (by removing the data from your array and updating the tableview)
-         tableView.beginUpdates()
+         
+            tableView.beginUpdates()
+            
+            let fileManager = FileManager.default
+            let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+            let url = NSURL(fileURLWithPath: path)
+            if let pathComponent = url.appendingPathComponent(audioFilenames[indexPath.row]) {
+            let filePath = pathComponent.path
+            do {
+                try fileManager.removeItem(atPath: filePath)
+//                print("w try delete file: \(audioFilenames[indexPath.row])")
+            }
+            catch let error as NSError {
+                print("Ooops! Something went wrong: \(error)")
+            }
+            }
+            
             print(dictOfAudioFloat.keys)
             dictOfAudioFloat.removeValue(forKey: audioFilenames[indexPath.row])
             audioFilenames.remove(at: indexPath.row)
             
+            
+            
+           
+            
+            
          print(dictOfAudioFloat.keys)
             tableView.deleteRows(at: [indexPath], with: .left)
             tableView.endUpdates()
+            tableView.reloadData() //czy to dobrze?
         }
     }
 
@@ -448,7 +499,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
     
     func startScreamTracker(){
-        print(">>>>>>>averageDB: \(String(describing: averageDB))")
+     //   print(">>>>>>>averageDB: \(String(describing: averageDB))")
         if isScreamTrackerRunning == false{
         
             
@@ -513,7 +564,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
         exportFinished = false
         addRowWithScream()
-        
+        tableView.reloadData()
         
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
         let url = NSURL(fileURLWithPath: path)
@@ -522,21 +573,6 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
             let fileManager = FileManager.default
             if fileManager.fileExists(atPath: filePath) {
                 print("FILE AVAILABLE")
-                print(filePath)
-                print(path)
-                
-                do {
-                    let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-                    let documentDirectory = URL(fileURLWithPath: path)
-                  
-                      let originPath = documentDirectory.appendingPathComponent(audioFileName)
-                    let destinationPath = documentDirectory.appendingPathComponent("test\(audioFileName)")
-                    try FileManager.default.copyItem(at: originPath, to: destinationPath)
-                } catch {
-                    print(error)
-                }
-                
-                
             } else {
                 print("FILE NOT AVAILABLE")
             }
@@ -625,20 +661,31 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
             timerForAverageDB = nil
         }
         
-//
         if recorder.isRecording {
             recorder.stop()
             }
-//            tracker.detach()
-      //  micMixer.detach()
-//        mic.detach()
-//        silence.detach()
-//        player.detach()
-        
+    
         do {
             try AudioKit.stop()
         } catch {
             AKLog("AudioKit did not start!")
+        }
+        
+        let fileManager = FileManager.default
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let url = NSURL(fileURLWithPath: path)
+        
+        
+        for i in 0..<audioFilenames.count{
+            if let pathComponent = url.appendingPathComponent(audioFilenames[i]) {
+                let filePath = pathComponent.path
+                do {
+                    try fileManager.removeItem(atPath: filePath)
+                }
+                catch let error as NSError {
+                    print("Ooops! Something went wrong: \(error)")
+                }
+            }
         }
         
         
@@ -805,8 +852,10 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
 //        timeStamp.insert(NSDate().timeIntervalSince1970, at: 0)
 //        timeStamp.insert(String(Date()), at: 0)
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .short
+//        dateFormatter.dateStyle = .short
+//        dateFormatter.timeStyle = .short
+        dateFormatter.dateFormat = "dd/MM/yy hh:mm:ss"
+        
         
         timeStamp.insert(dateFormatter.string(from: Date()), at: 0)
 //        print(date)
@@ -845,7 +894,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         } else {
          //   print(tempAverageDB)
             averageDB = tempAverageDB.reduce(0, +) / tempAverageDB.count
-            print("average: \(String(describing: averageDB))")
+         //   print("average: \(String(describing: averageDB))")
             averageCounter = 0
         
         }
@@ -991,7 +1040,6 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
         
         let indexPath = IndexPath(row: 0, section:0)
-    //    datas.insert("\(Date())", at: indexPath.row)                 // inserting default value (I'm inserting ""; )
         tableView.insertRows(at: [indexPath], with: .automatic)
         
         

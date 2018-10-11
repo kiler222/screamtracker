@@ -18,44 +18,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcW-Dv-RUZ">
-                                <rect key="frame" x="64" y="253" width="192" height="38"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
-                                <state key="normal" title="Start Scream Tracker"/>
-                                <connections>
-                                    <action selector="goToScreamTracking:" destination="uTs-Ca-nU8" eventType="touchUpInside" id="CV4-ss-Npu"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ea-mg-VSo">
-                                <rect key="frame" x="87" y="332" width="147" height="38"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
-                                <state key="normal" title="Saved Screams"/>
-                                <connections>
-                                    <action selector="toToSavedScreams:" destination="uTs-Ca-nU8" eventType="touchUpInside" id="S6l-wK-xo4"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="scream" translatesAutoresizingMaskIntoConstraints="NO" id="Oke-Eq-pe6">
-                                <rect key="frame" x="59" y="40" width="202" height="158"/>
+                                <rect key="frame" x="59" y="60" width="202" height="158"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="202" id="9iA-yS-d4Q"/>
                                     <constraint firstAttribute="height" constant="158" id="EaM-Tb-BGS"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ea-mg-VSo">
+                                <rect key="frame" x="65" y="318" width="190" height="35"/>
+                                <color key="backgroundColor" red="0.72941176470588232" green="0.23529411764705882" blue="0.29803921568627451" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="190" id="6V5-2B-7fr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="19"/>
+                                <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                <state key="normal" title="Saved Screams">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="toToSavedScreams:" destination="uTs-Ca-nU8" eventType="touchUpInside" id="S6l-wK-xo4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcW-Dv-RUZ">
+                                <rect key="frame" x="65" y="258" width="190" height="35"/>
+                                <color key="backgroundColor" red="0.72783745659722221" green="0.23700629340277779" blue="0.29619683159722221" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="190" id="zEG-Mi-ne6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="19"/>
+                                <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                <state key="normal" title="Start Scream Tracker">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToScreamTracking:" destination="uTs-Ca-nU8" eventType="touchUpInside" id="CV4-ss-Npu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8ea-mg-VSo" firstAttribute="centerX" secondItem="dcW-Dv-RUZ" secondAttribute="centerX" id="Buj-Uh-PUl"/>
-                            <constraint firstItem="Oke-Eq-pe6" firstAttribute="top" secondItem="ATo-6O-koI" secondAttribute="top" constant="20" id="F74-S8-V14"/>
+                            <constraint firstItem="Oke-Eq-pe6" firstAttribute="top" secondItem="ATo-6O-koI" secondAttribute="top" constant="40" id="F74-S8-V14"/>
+                            <constraint firstItem="dcW-Dv-RUZ" firstAttribute="centerX" secondItem="VkA-Rv-EcU" secondAttribute="centerX" id="REW-Zq-Boe"/>
                             <constraint firstItem="dcW-Dv-RUZ" firstAttribute="centerX" secondItem="VkA-Rv-EcU" secondAttribute="centerX" id="Sx8-nz-b7y"/>
-                            <constraint firstItem="8ea-mg-VSo" firstAttribute="top" secondItem="dcW-Dv-RUZ" secondAttribute="bottom" constant="41" id="Yt6-7g-yz5"/>
-                            <constraint firstItem="dcW-Dv-RUZ" firstAttribute="top" secondItem="Oke-Eq-pe6" secondAttribute="bottom" constant="55" id="jP4-0Y-hO8"/>
+                            <constraint firstItem="dcW-Dv-RUZ" firstAttribute="centerX" secondItem="VkA-Rv-EcU" secondAttribute="centerX" id="WBO-ce-4Ml"/>
+                            <constraint firstItem="8ea-mg-VSo" firstAttribute="top" secondItem="dcW-Dv-RUZ" secondAttribute="bottom" constant="25" id="Yt6-7g-yz5"/>
+                            <constraint firstItem="8ea-mg-VSo" firstAttribute="centerX" secondItem="VkA-Rv-EcU" secondAttribute="centerX" id="hwh-2V-fdy"/>
+                            <constraint firstItem="dcW-Dv-RUZ" firstAttribute="top" secondItem="Oke-Eq-pe6" secondAttribute="bottom" constant="40" id="jP4-0Y-hO8"/>
                             <constraint firstItem="Oke-Eq-pe6" firstAttribute="centerX" secondItem="VkA-Rv-EcU" secondAttribute="centerX" id="m50-jY-TPP"/>
-                            <constraint firstItem="8ea-mg-VSo" firstAttribute="leading" secondItem="ATo-6O-koI" secondAttribute="leading" constant="87" id="pux-cD-Q0s"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ATo-6O-koI"/>
                     </view>
                     <navigationItem key="navigationItem" id="n63-rC-Y64"/>
                     <connections>
+                        <outlet property="goToSavedButton" destination="8ea-mg-VSo" id="yNK-FR-xVv"/>
+                        <outlet property="startTrackingButton" destination="dcW-Dv-RUZ" id="Qcc-z9-r8o"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="goToScreamTracking" id="IgI-zX-VaM"/>
                         <segue destination="RNM-Nw-SDc" kind="presentation" identifier="goToSavedScreams" id="4oU-sD-hhl"/>
                     </connections>
@@ -124,7 +142,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTa-uA-8x3">
-                                <rect key="frame" x="20" y="26.5" width="25" height="25"/>
+                                <rect key="frame" x="20" y="40" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="g9h-vQ-ZQ3"/>
                                     <constraint firstAttribute="height" constant="25" id="rZz-OJ-bBz"/>
@@ -138,13 +156,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="dhk-r3-rPW" firstAttribute="top" secondItem="kTa-uA-8x3" secondAttribute="bottom" constant="14.5" id="80V-xc-F9M"/>
+                            <constraint firstItem="dhk-r3-rPW" firstAttribute="top" secondItem="kTa-uA-8x3" secondAttribute="bottom" constant="1" id="80V-xc-F9M"/>
                             <constraint firstItem="kTa-uA-8x3" firstAttribute="leading" secondItem="20S-KO-fcW" secondAttribute="leading" constant="20" id="BNr-5z-slA"/>
                             <constraint firstItem="JqV-Tb-MFW" firstAttribute="top" secondItem="dhk-r3-rPW" secondAttribute="bottom" id="DYn-Bg-SxP"/>
                             <constraint firstItem="dhk-r3-rPW" firstAttribute="leading" secondItem="20S-KO-fcW" secondAttribute="leading" id="E4T-Mf-K3N"/>
                             <constraint firstItem="JqV-Tb-MFW" firstAttribute="centerX" secondItem="20S-KO-fcW" secondAttribute="centerX" id="FrQ-Qj-dkn"/>
                             <constraint firstItem="JqV-Tb-MFW" firstAttribute="bottom" secondItem="20S-KO-fcW" secondAttribute="bottom" constant="-50" id="GOL-8p-5oP"/>
-                            <constraint firstItem="kTa-uA-8x3" firstAttribute="top" secondItem="20S-KO-fcW" secondAttribute="top" constant="6.5" id="JJj-9I-Jqj"/>
+                            <constraint firstItem="kTa-uA-8x3" firstAttribute="top" secondItem="20S-KO-fcW" secondAttribute="top" constant="20" id="JJj-9I-Jqj"/>
                             <constraint firstItem="JqV-Tb-MFW" firstAttribute="top" secondItem="dhk-r3-rPW" secondAttribute="bottom" id="NDC-82-Dia"/>
                             <constraint firstItem="20S-KO-fcW" firstAttribute="trailing" secondItem="dhk-r3-rPW" secondAttribute="trailing" id="Q0N-68-tJf"/>
                             <constraint firstItem="JqV-Tb-MFW" firstAttribute="leading" secondItem="20S-KO-fcW" secondAttribute="leading" id="QQl-6f-PSA"/>
@@ -187,18 +205,79 @@
                                     <action selector="backtoFirstViewController:" destination="RNM-Nw-SDc" eventType="touchUpInside" id="yL0-ZK-ra2"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vtJ-U8-Gqn">
+                                <rect key="frame" x="0.0" y="73" width="320" height="445"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedScreamsTableViewCell" rowHeight="150" id="wHI-AN-JEa" userLabel="SavedScreamTableViewCell" customClass="SavedScreamsTableViewCell" customModule="ScreamTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wHI-AN-JEa" id="QOs-xs-66w">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="149.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="3b6-mL-xqr" customClass="LineChartView" customModule="Charts">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="149.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6S-NX-AxD">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="12"/>
+                                                    <viewLayoutGuide key="safeArea" id="zWW-ew-ZQy"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="10"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="3b6-mL-xqr" firstAttribute="leading" secondItem="QOs-xs-66w" secondAttribute="leading" id="ADM-1J-sgX"/>
+                                                <constraint firstItem="K6S-NX-AxD" firstAttribute="leading" secondItem="QOs-xs-66w" secondAttribute="leading" id="OE0-Sh-u5u"/>
+                                                <constraint firstAttribute="trailing" secondItem="3b6-mL-xqr" secondAttribute="trailing" id="Orq-eA-sjA"/>
+                                                <constraint firstItem="3b6-mL-xqr" firstAttribute="centerY" secondItem="QOs-xs-66w" secondAttribute="centerY" id="bTa-uN-0ZT"/>
+                                                <constraint firstAttribute="trailing" secondItem="K6S-NX-AxD" secondAttribute="trailing" constant="20" id="da6-cP-ynN"/>
+                                                <constraint firstItem="3b6-mL-xqr" firstAttribute="top" secondItem="QOs-xs-66w" secondAttribute="top" id="gPh-7u-aAR"/>
+                                                <constraint firstItem="K6S-NX-AxD" firstAttribute="top" secondItem="QOs-xs-66w" secondAttribute="top" id="p36-jJ-w4Q"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="savedChartView" destination="3b6-mL-xqr" id="i8z-oX-IFj"/>
+                                            <outlet property="savedTimeStamp" destination="K6S-NX-AxD" id="U2F-zX-Tcp"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have any saved screams." lineBreakMode="clip" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvO-Ip-059">
+                                <rect key="frame" x="60" y="242" width="204" height="94"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="193" id="sSv-WI-yqm"/>
+                                    <constraint firstAttribute="height" constant="94" id="yGi-rX-M2b"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="zvO-Ip-059" firstAttribute="top" secondItem="mOd-m5-pWf" secondAttribute="top" constant="222" id="Djt-G3-N85"/>
+                            <constraint firstItem="vtJ-U8-Gqn" firstAttribute="leading" secondItem="mOd-m5-pWf" secondAttribute="leading" id="G0x-EB-VX4"/>
+                            <constraint firstItem="zvO-Ip-059" firstAttribute="leading" secondItem="mOd-m5-pWf" secondAttribute="leading" constant="60" id="JPy-UU-5dD"/>
+                            <constraint firstItem="mOd-m5-pWf" firstAttribute="bottom" secondItem="vtJ-U8-Gqn" secondAttribute="bottom" constant="50" id="Mpp-q0-oIg"/>
                             <constraint firstItem="E6t-jB-S57" firstAttribute="top" secondItem="mOd-m5-pWf" secondAttribute="top" constant="20" id="Sgd-58-Uq3"/>
                             <constraint firstItem="E6t-jB-S57" firstAttribute="leading" secondItem="mOd-m5-pWf" secondAttribute="leading" constant="20" id="gA6-1E-ReK"/>
+                            <constraint firstAttribute="trailing" secondItem="vtJ-U8-Gqn" secondAttribute="trailing" id="lYi-a9-8m9"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zvO-Ip-059" secondAttribute="trailing" id="qyR-2c-t9o"/>
+                            <constraint firstItem="vtJ-U8-Gqn" firstAttribute="top" secondItem="E6t-jB-S57" secondAttribute="bottom" constant="8" id="waV-Uh-mC6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mOd-m5-pWf"/>
                     </view>
+                    <connections>
+                        <outlet property="noSavedScreams" destination="zvO-Ip-059" id="2Vj-US-lsZ"/>
+                        <outlet property="tableView" destination="vtJ-U8-Gqn" id="aCJ-60-1OP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5Z-Jd-FEI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1200" y="-1115"/>
+            <point key="canvasLocation" x="1200" y="-1115.4929577464789"/>
         </scene>
     </scenes>
     <resources>
