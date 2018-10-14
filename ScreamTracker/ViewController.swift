@@ -14,26 +14,50 @@ import Charts
 import Firebase
 import Crashlytics
 
+
+protocol PassSavedFiles {
+    func mySavedFiles(dictForSavedScreams : [String : String])
+}
+
+
+
 class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDelegate, AVAudioPlayerDelegate, UITableViewDelegate, UITableViewDataSource {
+    
+    var delegate : PassSavedFiles?
+    let hasWeaponOfMassDescrtruction : Bool = true
     
     
     @IBAction func backToFirstViewController(_ sender: Any) {
     
-//        timerForAverageDB.invalidate()
-//        timerForAverageDB = nil
+//        if delegate != nil {
+//            delegate?.mySavedFiles(dictForSavedScreams: dictForSavedScreams)
+//        }
         
+        
+        if (tagsForHidden.count != audioFilenames.count) {
         let alert = UIAlertController(title: "Stop tracking screams?", message: "You lost your unsaved screams.", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
             print("koniec trackingu")
+        
+
+            
              self.stopAndBack()
              self.dismiss(animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         
         self.present(alert, animated: true)
+        } else {
+            
+
+            
+            self.stopAndBack()
+            self.dismiss(animated: true, completion: nil)
+            
+        }
         
-        print(dictForSavedScreams)
+
        
     
     }
@@ -50,7 +74,13 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
     @IBOutlet weak var lineChartView: LineChartView!
     
-     var datas = [String]()
+    
+    @IBOutlet weak var averageField: UILabel!
+    
+    @IBOutlet weak var screamLevelField: UILabel!
+    
+    
+    var datas = [String]()
     var duration = [Double]()
     var timeStamp = [String]()
     
@@ -58,7 +88,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     var x: Int = 0 //counter do uzupełniania wykresu próbek
     var daneDecybele: [Double] = []
     var isFirstRun = true
-    
+    var isFirstTimeToSetScream = true
     var pierwszyRaz = 0
     
     var dictOfAudioFloat = [String:[Float]]()
@@ -78,6 +108,8 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     var touchedPointY: Double!
     
     var numbersOfScreams: Int = 0
+    
+    
     var audioFilenames: [String] = []
     var playCounts = 0 //ile razy został odtworzony dzwiek, potrzebne do wyświetlania reklam interstitial
     var tagsForHidden: [String] = []
@@ -155,7 +187,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
         tracker = AKFrequencyTracker(micMixer)
         silence = AKBooster(tracker, gain: 0)
-        print("-----------")
+//        print("-----------")
      //   usleep(200000)
         // tutaj było startCalculatingAverageDB()
         
@@ -215,7 +247,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         lineChartView.rightAxis.drawLabelsEnabled = false
         lineChartView.rightAxis.drawGridLinesEnabled = true
         lineChartView.rightAxis.gridLineWidth = 0.5
-        
+       
         lineChartView.rightAxis.axisLineColor = .white
         lineChartView.leftAxis.axisMaximum = 100
         lineChartView.leftAxis.axisMinimum = 0
@@ -269,6 +301,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
          isPlayingScream = true
         
         
+        
                     if Double((142 - 13 - Double(touchPointY))*100 / (142-13)) > averageLimit.limit + 3 && Double((142 - 13 - Double(touchPointY))*100 / (142-13)) < 95 {
                         
                     
@@ -291,7 +324,16 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
         recognizer.setTranslation(CGPoint.zero, in: lineChartView)
         screamDetectionLevel = Double(screamLimitLine.limit)
-         isPlayingScream = false
+        
+        if isFirstTimeToSetScream == true{
+        screamLimitLine.label = "Scream level"
+            isFirstTimeToSetScream = false
+        
+        }
+        
+        
+        
+        isPlayingScream = false
     }
 
     
@@ -357,8 +399,15 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
         print(timeStamp[sender.tag])
         
-        dictForSavedScreams[audioFilenames[sender.tag]] = timeStamp[sender.tag]
+//        dictForSavedScreams[audioFilenames[sender.tag]] = timeStamp[sender.tag]
         
+        var tempDictOfSavedScreams =  UserDefaults.standard.object(forKey: "dictOfSavedScreams") as! [String:String]?
+        
+        tempDictOfSavedScreams?["\(number).m4a"] = timeStamp[sender.tag]
+        
+        UserDefaults.standard.set(tempDictOfSavedScreams, forKey: "dictOfSavedScreams")
+        print(UserDefaults.standard.object(forKey: "dictOfSavedScreams"))
+            
         tagsForHidden.append(audioFilenames[sender.tag])
         sender.isHidden = true
         ProgressHUD.showSuccess("Scream saved!")
@@ -417,9 +466,16 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
             }
             }
             
+            print(tagsForHidden)
+            if let index = tagsForHidden.index(of: audioFilenames[indexPath.row]) {
+                tagsForHidden.remove(at: index)
+            }
+            print(tagsForHidden)
+            
             print(dictOfAudioFloat.keys)
             dictOfAudioFloat.removeValue(forKey: audioFilenames[indexPath.row])
             audioFilenames.remove(at: indexPath.row)
+           
             
             
             
@@ -449,13 +505,22 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         }
         
         let chartDataSet = LineChartDataSet(values: dataEntries, label: "dB")
-        chartDataSet.colors = [UIColor.green]
-        
+//        chartDataSet.colors = [UIColor.green.withAlphaComponent(0.33)]
+        chartDataSet.colors = [UIColor(red: 0.54902, green: 0.917647, blue: 1, alpha: 0.7)]
         let chartData = LineChartData()
         
         chartDataSet.drawCirclesEnabled = false
         chartDataSet.mode = .horizontalBezier
         chartDataSet.drawFilledEnabled = true
+//        print(chartDataSet.fillColor)
+
+        
+     //   print(chartDataSet.fillColor.withAlphaComponent(<#T##alpha: CGFloat##CGFloat#>))
+        
+        
+//        chartDataSet.fillAlpha = 1
+        
+        
       //  chartDataSet.cubicIntensity = 0.1
         
         
@@ -482,6 +547,10 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         }
         
     }
+    
+//    func viewWillDisappear() {
+//    delegate.pass(data: "someData") //call the func in the previous vc
+//    }
     
     
     @IBAction func screamTrackerButton(_ sender: UIButton) {
@@ -820,7 +889,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
         print("koniec grania")
         usleep(300000)
-        if playCounts > 3{ //po ilu odtworzeniach ma być wyświetlony interstitial
+        if playCounts > 9 { //po ilu odtworzeniach ma być wyświetlony interstitial
             if interstitial.isReady {
                 interstitial.present(fromRootViewController: self)
                 playCounts = 0
@@ -854,7 +923,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         let dateFormatter = DateFormatter()
 //        dateFormatter.dateStyle = .short
 //        dateFormatter.timeStyle = .short
-        dateFormatter.dateFormat = "dd/MM/yy hh:mm:ss"
+        dateFormatter.dateFormat = "dd/MM/yy hh:mm:ss a"
         
         
         timeStamp.insert(dateFormatter.string(from: Date()), at: 0)
@@ -944,7 +1013,12 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         averageLimit.label = String(format: "Average sound level", averageLimit.limit)
      //   averageLimit.label = String(format: "Average sound level %.f dB", averageLimit.limit)
      //   screamLimitLine.label = String(format: "+%.f dB", (screamLimitLine.limit-averageLimit.limit))
-        screamLimitLine.label = String(format: "Scream level +%.fdB", (screamLimitLine.limit-averageLimit.limit))
+      
+//        screamLimitLine.label = String(format: "Scream level +%.fdB", (screamLimitLine.limit-averageLimit.limit))
+      
+       
+        
+        
         
         if isScreamLimitSetAverage == true {
                 screamLimitLine.limit = averageLimit.limit + 3
@@ -963,17 +1037,24 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
                 
             screamDetectionLevel = averageLimit.limit + 6
             screamLimitLine.limit = screamDetectionLevel
+            screamLimitLine.label = "Set a scream level"
+            
          //   print(screamDetectionLevel, screamLimitLine.limit)
             
             isFirstRun = false
-        }
-        
+        } 
 //        print("detected: \(daneDecybele.last!) average limit: \(averageLimit.limit) scream limit: \(screamLimitLine.limit) detectionLimit: \(screamDetectionLevel)")
 //        print(String(format: "detected: %.1f  average limit: %.1f  scream limit: %.1f detectionLimit: %.1f ", daneDecybele.last!, averageLimit.limit, screamLimitLine.limit, screamLimitLine.limit))
         
         
 //        print("ile danych: \(daneDecybele.count)")
-           setChart()
+        
+        
+         averageField.text = String(format: "Average level: %.f dB", averageLimit.limit)
+        screamLevelField.text = String(format: "Scream level: +%.f dB", (screamDetectionLevel - averageLimit.limit))
+
+        
+        setChart()
         
     }
 
@@ -1064,10 +1145,9 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
     
     func createAndLoadInterstitial() -> GADInterstitial {
-        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910") // testowy interistetial admob
-//        interstitial = GADInterstitial(adUnitID: "ca-app-pub-8857410705016797/3847300079") //  moj admob
+//        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910") // testowy interistetial admob
+        interstitial = GADInterstitial(adUnitID: "ca-app-pub-8857410705016797/3847300079") //  moj admob
         
-//        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910") //testowy video interisitial admob
         interstitial.delegate = self
         interstitial.load(request)
         return interstitial

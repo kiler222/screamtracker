@@ -93,8 +93,8 @@ class SavedScreamsViewController: UIViewController, GADBannerViewDelegate, GADIn
         // In this case, we instantiate the banner with desired ad size.
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         addBannerViewToView(bannerView)
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" //testowy admob
-//        bannerView.adUnitID = "ca-app-pub-8857410705016797/7011915857" // moj admob
+//        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" //testowy admob
+        bannerView.adUnitID = "ca-app-pub-8857410705016797/7011915857" // moj admob
         
         
         bannerView.rootViewController = self
@@ -122,13 +122,16 @@ class SavedScreamsViewController: UIViewController, GADBannerViewDelegate, GADIn
                 let testFiles = directoryContents.filter{ $0.pathExtension == "m4a" }
                 //print("testowe urls:",testFiles)
                 let testFileNames = testFiles.map{ $0.deletingPathExtension().lastPathComponent }
-
+                let tempDictOfSavedScreams =  UserDefaults.standard.object(forKey: "dictOfSavedScreams") as! [String:String]?
+                print("temp sved: \(tempDictOfSavedScreams)")
                 for i in 0 ..< testFileNames.count {
-                  //  print(testFileNames[i])
+                    print(testFileNames[i])
+                    
+                    if (tempDictOfSavedScreams?["\(testFileNames[i]).m4a"]) != nil {
                     audioFilenames.append("\(testFileNames[i]).m4a")
                     
                     dictOfAudioFloat["\(testFileNames[i]).m4a"] = prepareAudioDataFloat(audioFileName: "\(testFileNames[i]).m4a")
-                    
+                    }
                 }
             }else{
                noSavedScreams.isHidden = false
@@ -157,11 +160,20 @@ class SavedScreamsViewController: UIViewController, GADBannerViewDelegate, GADIn
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // create a new cell if needed or reuse an old one
+        
+        var dictOfSavedScreams = [String:String]()
+        dictOfSavedScreams = (UserDefaults.standard.object(forKey: "dictOfSavedScreams") as! [String: String]?)!
+        print(dictOfSavedScreams)
+        print(audioFilenames[indexPath.row])
+       
+        print(dictOfSavedScreams[audioFilenames[indexPath.row]] ?? "")
+//        print(dictOfSavedScreams["424126560.m4a"])
+        
+        
         let cell: SavedScreamsTableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! SavedScreamsTableViewCell
         
-//        cell.timeStamp?.text = String(format: "Duration: %.1f", duration[indexPath.row])
         
-//        cell.timeStamp?.text = "Detected: \(timeStamp[indexPath.row])"
+        cell.savedTimeStamp?.text = "Detected: \(dictOfSavedScreams[audioFilenames[indexPath.row]] ?? "")"
 //        print(indexPath.row)
 //        print(audioFilenames.count)
 //        print(audioFilenames[indexPath.row])
@@ -213,6 +225,17 @@ class SavedScreamsViewController: UIViewController, GADBannerViewDelegate, GADIn
             
           //  print(dictOfAudioFloat.keys)
             dictOfAudioFloat.removeValue(forKey: audioFilenames[indexPath.row])
+            
+            var dictOfSavedScreams = [String:String]()
+            dictOfSavedScreams = (UserDefaults.standard.object(forKey: "dictOfSavedScreams") as! [String: String]?)!
+            
+            print(dictOfSavedScreams)
+            dictOfSavedScreams.removeValue(forKey: audioFilenames[indexPath.row])
+            
+            print(dictOfSavedScreams)
+        //    UserDefaults.standard.removeObject(forKey: "dictOfSavedScreams")
+            UserDefaults.standard.set(dictOfSavedScreams, forKey: "dictOfSavedScreams")
+            
             audioFilenames.remove(at: indexPath.row)
             if audioFilenames.count == 0 {
                 noSavedScreams.isHidden = false
@@ -341,11 +364,10 @@ class SavedScreamsViewController: UIViewController, GADBannerViewDelegate, GADIn
  
     
     func createAndLoadInterstitial() -> GADInterstitial {
-        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910") // testowy interistetial admob
-//        interstitial = GADInterstitial(adUnitID: "ca-app-pub-8857410705016797/3847300079") //  moj admob
+//        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910") // testowy interistetial admob
+        interstitial = GADInterstitial(adUnitID: "ca-app-pub-8857410705016797/3847300079") //  moj admob
         
-//        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910") //testowy video interisitial admob
-        interstitial.delegate = self
+       interstitial.delegate = self
         interstitial.load(request)
         return interstitial
     }

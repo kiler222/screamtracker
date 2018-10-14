@@ -74,13 +74,13 @@
                     <connections>
                         <outlet property="goToSavedButton" destination="8ea-mg-VSo" id="yNK-FR-xVv"/>
                         <outlet property="startTrackingButton" destination="dcW-Dv-RUZ" id="Qcc-z9-r8o"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="goToScreamTracking" id="IgI-zX-VaM"/>
                         <segue destination="RNM-Nw-SDc" kind="presentation" identifier="goToSavedScreams" id="4oU-sD-hhl"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="goToScreamTracking" id="VMV-7Y-tTm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4y-aV-rr7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="249.375" y="-467.95774647887322"/>
+            <point key="canvasLocation" x="249" y="-476"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -91,18 +91,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dhk-r3-rPW" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="66" width="320" height="150"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="125"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="6VX-tg-2wT"/>
+                                    <constraint firstAttribute="height" constant="125" id="6VX-tg-2wT"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="08R-gZ-XD8" appends="YES" id="VSh-Ki-jZx"/>
                                 </connections>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JqV-Tb-MFW">
-                                <rect key="frame" x="0.0" y="216" width="320" height="302"/>
+                                <rect key="frame" x="0.0" y="196" width="320" height="322"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScreamTableViewCell" rowHeight="150" id="TLR-sY-lfc" customClass="ScreamTableViewCell" customModule="ScreamTracker" customModuleProvider="target">
@@ -153,26 +153,50 @@
                                     <action selector="backToFirstViewController:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jo8-k4-PKY"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="95c-Jp-2GC">
+                                <rect key="frame" x="16" y="191" width="150" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="zEz-oR-fGK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQ3-Ov-GaG">
+                                <rect key="frame" x="154" y="191" width="150" height="0.0"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="yQ3-Ov-GaG" firstAttribute="width" secondItem="95c-Jp-2GC" secondAttribute="width" id="3im-1P-tc7"/>
                             <constraint firstItem="dhk-r3-rPW" firstAttribute="top" secondItem="kTa-uA-8x3" secondAttribute="bottom" constant="1" id="80V-xc-F9M"/>
+                            <constraint firstItem="yQ3-Ov-GaG" firstAttribute="top" secondItem="dhk-r3-rPW" secondAttribute="bottom" id="BJG-g1-bVS"/>
                             <constraint firstItem="kTa-uA-8x3" firstAttribute="leading" secondItem="20S-KO-fcW" secondAttribute="leading" constant="20" id="BNr-5z-slA"/>
-                            <constraint firstItem="JqV-Tb-MFW" firstAttribute="top" secondItem="dhk-r3-rPW" secondAttribute="bottom" id="DYn-Bg-SxP"/>
+                            <constraint firstItem="95c-Jp-2GC" firstAttribute="top" secondItem="dhk-r3-rPW" secondAttribute="bottom" id="COp-h0-Gzu"/>
                             <constraint firstItem="dhk-r3-rPW" firstAttribute="leading" secondItem="20S-KO-fcW" secondAttribute="leading" id="E4T-Mf-K3N"/>
                             <constraint firstItem="JqV-Tb-MFW" firstAttribute="centerX" secondItem="20S-KO-fcW" secondAttribute="centerX" id="FrQ-Qj-dkn"/>
                             <constraint firstItem="JqV-Tb-MFW" firstAttribute="bottom" secondItem="20S-KO-fcW" secondAttribute="bottom" constant="-50" id="GOL-8p-5oP"/>
                             <constraint firstItem="kTa-uA-8x3" firstAttribute="top" secondItem="20S-KO-fcW" secondAttribute="top" constant="20" id="JJj-9I-Jqj"/>
-                            <constraint firstItem="JqV-Tb-MFW" firstAttribute="top" secondItem="dhk-r3-rPW" secondAttribute="bottom" id="NDC-82-Dia"/>
+                            <constraint firstItem="95c-Jp-2GC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="NeB-jv-ecu"/>
                             <constraint firstItem="20S-KO-fcW" firstAttribute="trailing" secondItem="dhk-r3-rPW" secondAttribute="trailing" id="Q0N-68-tJf"/>
                             <constraint firstItem="JqV-Tb-MFW" firstAttribute="leading" secondItem="20S-KO-fcW" secondAttribute="leading" id="QQl-6f-PSA"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="95c-Jp-2GC" secondAttribute="trailing" constant="20" symbolic="YES" id="Qp5-51-PWL"/>
                             <constraint firstItem="JqV-Tb-MFW" firstAttribute="trailing" secondItem="20S-KO-fcW" secondAttribute="trailing" id="WCq-Ls-G0v"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yQ3-Ov-GaG" secondAttribute="trailing" id="Xce-Xi-8zM"/>
+                            <constraint firstItem="yQ3-Ov-GaG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="aV8-Jd-h98"/>
                             <constraint firstItem="dhk-r3-rPW" firstAttribute="centerX" secondItem="20S-KO-fcW" secondAttribute="centerX" id="uug-9J-89w"/>
+                            <constraint firstItem="JqV-Tb-MFW" firstAttribute="top" secondItem="95c-Jp-2GC" secondAttribute="bottom" constant="5" id="vkx-gp-OxU"/>
+                            <constraint firstItem="JqV-Tb-MFW" firstAttribute="top" secondItem="yQ3-Ov-GaG" secondAttribute="bottom" constant="5" id="x8l-Wd-56T"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="20S-KO-fcW"/>
                     </view>
                     <connections>
+                        <outlet property="averageField" destination="95c-Jp-2GC" id="6Qq-PR-b8x"/>
                         <outlet property="lineChartView" destination="dhk-r3-rPW" id="ACU-i3-S5L"/>
+                        <outlet property="screamLevelField" destination="yQ3-Ov-GaG" id="yWx-9r-3R8"/>
                         <outlet property="tableView" destination="JqV-Tb-MFW" id="cbs-tc-Rpm"/>
                     </connections>
                 </viewController>

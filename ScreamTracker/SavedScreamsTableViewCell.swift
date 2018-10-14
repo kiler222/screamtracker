@@ -30,7 +30,7 @@ class SavedScreamsTableViewCell: UITableViewCell {
         }
         
         let chartDataSet = LineChartDataSet(values: dataEntries, label: "dB")
-        chartDataSet.colors = [UIColor.red]
+        chartDataSet.colors = [UIColor.red.withAlphaComponent(0.6)]
         
         let chartData = LineChartData()
         
@@ -38,6 +38,7 @@ class SavedScreamsTableViewCell: UITableViewCell {
         chartDataSet.mode = .cubicBezier
         chartDataSet.drawFilledEnabled = true
         chartDataSet.fillColor = .red
+        chartDataSet.fillAlpha = 0.6
         chartDataSet.lineWidth = 2
         //  chartDataSet.cubicIntensity = 0.1
         chartData.addDataSet(chartDataSet)
