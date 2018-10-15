@@ -952,7 +952,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         if tracker.amplitude != 0 {
          
         if averageCounter < 10 {
-        tempAverageDB.append(70 + convertAmplitudeToDb(amp: tracker.amplitude))
+        tempAverageDB.append(90 + convertAmplitudeToDb(amp: tracker.amplitude))
             
             if tempAverageDB.count > 10 {
                 tempAverageDB.remove(at: 0)
