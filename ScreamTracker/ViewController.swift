@@ -270,8 +270,8 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         // In this case, we instantiate the banner with desired ad size.
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         addBannerViewToView(bannerView)
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" //testowy admob
-//        bannerView.adUnitID = "ca-app-pub-8857410705016797/7011915857" // moj admob
+//        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" //testowy admob
+        bannerView.adUnitID = "ca-app-pub-8857410705016797/7011915857" // moj admob
         
         
         bannerView.rootViewController = self
@@ -952,7 +952,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         if tracker.amplitude != 0 {
          
         if averageCounter < 10 {
-        tempAverageDB.append(90 + convertAmplitudeToDb(amp: tracker.amplitude))
+        tempAverageDB.append(85 + convertAmplitudeToDb(amp: tracker.amplitude))
             
             if tempAverageDB.count > 10 {
                 tempAverageDB.remove(at: 0)
