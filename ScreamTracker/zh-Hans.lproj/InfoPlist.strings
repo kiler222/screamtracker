@@ -1,0 +1,6 @@
+/* Bundle name */
+"CFBundleName" = "Scream Tracker";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "我们需要你的麦克风来检测尖叫声。";
+

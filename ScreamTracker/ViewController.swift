@@ -35,9 +35,9 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
         
         if (tagsForHidden.count != audioFilenames.count) {
-        let alert = UIAlertController(title: "Stop tracking screams?", message: "You lost your unsaved screams.", preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("Stop tracking screams?", comment: ""), message: NSLocalizedString("You lost your unsaved screams.", comment: ""), preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { action in
             print("koniec trackingu")
         
 
@@ -45,7 +45,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
              self.stopAndBack()
              self.dismiss(animated: true, completion: nil)
         }))
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel, handler: nil))
         
         self.present(alert, animated: true)
         } else {
@@ -326,7 +326,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         screamDetectionLevel = Double(screamLimitLine.limit)
         
         if isFirstTimeToSetScream == true{
-        screamLimitLine.label = "Scream level"
+        screamLimitLine.label = NSLocalizedString("Set a scream level", comment: "")
             isFirstTimeToSetScream = false
         
         }
@@ -354,7 +354,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
 //        cell.timeStamp?.text = String(format: "Duration: %.1f", duration[indexPath.row])
         
-        cell.timeStamp?.text = "Detected: \(timeStamp[indexPath.row])"
+        cell.timeStamp?.text = "\(NSLocalizedString("Detected:", comment: "")) \(timeStamp[indexPath.row])"
      
         cell.setChartInCell(audioData: dictOfAudioFloat[audioFilenames[indexPath.row]]!, points: 350)
         
@@ -410,7 +410,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
             
         tagsForHidden.append(audioFilenames[sender.tag])
         sender.isHidden = true
-        ProgressHUD.showSuccess("Scream saved!")
+        ProgressHUD.showSuccess("\(NSLocalizedString("Scream saved!", comment: ""))")
         
     }
     
@@ -836,7 +836,8 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
  */
     
     func playScream2(audioFileName: String){
-
+        timerForScreamDetection.invalidate()
+        timerForScreamDetection = nil
 
         var filePath: String!
         
@@ -889,7 +890,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
         print("koniec grania")
         usleep(300000)
-        if playCounts > 9 { //po ilu odtworzeniach ma być wyświetlony interstitial
+        if playCounts > 2 { //po ilu odtworzeniach ma być wyświetlony interstitial
             if interstitial.isReady {
                 interstitial.present(fromRootViewController: self)
                 playCounts = 0
@@ -898,7 +899,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
             }
         }
         self.isPlayingScream = false
-        
+        screamDetectionTimer()
     }
     
     
@@ -1010,7 +1011,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
 //        print("average DB: \(averageDB)")
 
         averageLimit.limit = (limitAverageDB.reduce(0, +)/limitAverageDB.count)
-        averageLimit.label = String(format: "Average sound level", averageLimit.limit)
+        averageLimit.label = String(format: NSLocalizedString("Average sound level", comment: ""), averageLimit.limit)
      //   averageLimit.label = String(format: "Average sound level %.f dB", averageLimit.limit)
      //   screamLimitLine.label = String(format: "+%.f dB", (screamLimitLine.limit-averageLimit.limit))
       
@@ -1037,7 +1038,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
                 
             screamDetectionLevel = averageLimit.limit + 6
             screamLimitLine.limit = screamDetectionLevel
-            screamLimitLine.label = "Set a scream level"
+            screamLimitLine.label = NSLocalizedString("Scream level", comment: "")
             
          //   print(screamDetectionLevel, screamLimitLine.limit)
             
@@ -1050,8 +1051,8 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
 //        print("ile danych: \(daneDecybele.count)")
         
         
-         averageField.text = String(format: "Average level: %.f dB", averageLimit.limit)
-        screamLevelField.text = String(format: "Scream level: +%.f dB", (screamDetectionLevel - averageLimit.limit))
+        averageField.text = String(format: "\(NSLocalizedString("Average level:", comment: "")) %.f dB", averageLimit.limit)
+        screamLevelField.text = String(format: "\(NSLocalizedString("Scream level:", comment: "")) +%.f dB", (screamDetectionLevel - averageLimit.limit))
 
         
         setChart()
@@ -1092,17 +1093,25 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
                     
                     if oneExtraStepWithoutScream == 1 {
                         
+                        print("\n\(oneExtraStepWithoutScream)\n")
+                        oneExtraStepWithoutScream -= 1
+                        
+                        if oneExtraStepWithoutScream == 0{
                         endSample = Int(recorder.audioFile!.samplesCount)
                         audioFilenames.insert("screamFile\(numbersOfScreams).m4a", at: 0)
                         exportScreamFile(audioFileName: "screamFile\(numbersOfScreams).m4a", startSample: (startSample-33075), endSample: (endSample))
-                        
-                     //   addRowWithScream() // odejmowałem 11025 i dodawałem 22050
-                        
-                        
                         numbersOfScreams += 1
+                        }
                         
-                    oneExtraStepWithoutScream = 0
                     }
+//                    else {
+//
+//                        endSample = Int(recorder.audioFile!.samplesCount)
+//                        audioFilenames.insert("screamFile\(numbersOfScreams).m4a", at: 0)
+//                        exportScreamFile(audioFileName: "screamFile\(numbersOfScreams).m4a", startSample: (startSample-33075), endSample: (endSample))
+//                         print("/n\(oneExtraStepWithoutScream)/n")
+//                            numbersOfScreams += 1
+//                    }
                     
 //                    print("krzyk < 70 i screamDetected == false")
                     

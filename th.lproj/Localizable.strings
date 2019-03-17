@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  ScreamTracker
+
+  Created by kiler on 16.03.2019.
+  Copyright © 2019 kiler. All rights reserved.
+*/
+
+"Average level:" = "ระดับเฉลี่ย:";
+"Scream level:" = "ระดับการตรวจจับ:";
+"Scream level" = "ระดับการตรวจจับ";
+"Set a scream level" = "ตั้งค่าระดับการตรวจจับ";
+"Detected:" = "ตรวจพบ:";
+"Scream saved!" = "บันทึกเสียงกรีดร้อง!";
+"Stop tracking screams?" = "คุณต้องการหยุดติดตามหรือไม่";
+"You lost your unsaved screams." = "คุณสูญเสียเสียงกรีดร้องที่ไม่ได้บันทึก";
+"Yes" = "ใช่";
+"No" = "ไม่";

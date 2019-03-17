@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  ScreamTracker
+
+  Created by kiler on 16.03.2019.
+  Copyright © 2019 kiler. All rights reserved.
+*/
+
+"Average level:" = "Durchschnittsniveau:";
+"Scream level:" = "Erkennungsstufe:";
+"Scream level" = "Erkennungsstufe";
+"Set a scream level" = "Legen Sie eine Erkennungsstufe fest";
+"Detected:" = "Erkannt:";
+"Scream saved!" = "Schrei gerettet!";
+"Stop tracking screams?" = "Möchten Sie das Tracking stoppen?";
+"You lost your unsaved screams." = "Du hast nicht gerettete Schreie verloren.";
+"Yes" = "Ja";
+"No" = "Nein";

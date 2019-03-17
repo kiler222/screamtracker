@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  ScreamTracker
+
+  Created by kiler on 16.03.2019.
+  Copyright © 2019 kiler. All rights reserved.
+*/
+
+"Average level:" = "औसत स्तर:";
+"Scream level:" = "पता लगाने का स्तर:";
+"Scream level" = "पता लगाने का स्तर";
+"Set a scream level" = "एक पहचान स्तर सेट करें";
+"Detected:" = "का पता चला:";
+"Scream saved!" = "चीख बच गई!";
+"Stop tracking screams?" = "क्या आप ट्रैकिंग रोकना चाहते हैं?";
+"You lost your unsaved screams." = "आपने बिना पढ़ी हुई चीखें खो दीं।";
+"Yes" = "हाँ";
+"No" = "नहीं";

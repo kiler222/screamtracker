@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  ScreamTracker
+
+  Created by kiler on 16.03.2019.
+  Copyright © 2019 kiler. All rights reserved.
+*/
+
+"Average level:" = "平均レベル:";
+"Scream level:" = "検出レベル:";
+"Scream level" = "検出レベル";
+"Set a scream level" = "検知レベルを設定する";
+"Detected:" = "検出されました";
+"Scream saved!" = "スクリーム保存";
+"Stop tracking screams?" = "追跡を停止しますか？";
+"You lost your unsaved screams." = "未保存の悲鳴を失った";
+"Yes" = "はい";
+"No" = "いいえ";

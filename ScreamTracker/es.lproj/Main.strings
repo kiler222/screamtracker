@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "3EY-bV-EMp"; */
+"3EY-bV-EMp.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Saved Screams"; ObjectID = "8ea-mg-VSo"; */
+"8ea-mg-VSo.normalTitle" = "Gritos guardados";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "K6S-NX-AxD"; */
+"K6S-NX-AxD.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Start Scream Tracker"; ObjectID = "dcW-Dv-RUZ"; */
+"dcW-Dv-RUZ.normalTitle" = "Comienzo";
+
+/* Class = "UILabel"; text = "You don't have any saved screams."; ObjectID = "zvO-Ip-059"; */
+"zvO-Ip-059.text" = "No tienes ningún grito guardado.";

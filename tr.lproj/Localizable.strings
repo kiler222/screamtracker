@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  ScreamTracker
+
+  Created by kiler on 16.03.2019.
+  Copyright © 2019 kiler. All rights reserved.
+*/
+
+"Average level:" = "Ortalama seviye:";
+"Scream level:" = "Algılama seviyesi:";
+"Scream level" = "Algılama seviyesi";
+"Set a scream level" = "Bir algılama seviyesi belirle";
+"Detected:" = "Tespit:";
+"Scream saved!" = "Çığlık kurtarıldı!";
+"Stop tracking screams?" = "İzlemeyi durdurmak istiyor musunuz?";
+"You lost your unsaved screams." = "Kaydedilmemiş çığlıkları kaybettiniz.";
+"Yes" = "Evet";
+"No" = "Yok hayır";

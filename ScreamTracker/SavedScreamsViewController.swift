@@ -173,7 +173,7 @@ class SavedScreamsViewController: UIViewController, GADBannerViewDelegate, GADIn
         let cell: SavedScreamsTableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! SavedScreamsTableViewCell
         
         
-        cell.savedTimeStamp?.text = "Detected: \(dictOfSavedScreams[audioFilenames[indexPath.row]] ?? "")"
+        cell.savedTimeStamp?.text = "\(NSLocalizedString("Detected:", comment: "")) \(dictOfSavedScreams[audioFilenames[indexPath.row]] ?? "")"
 //        print(indexPath.row)
 //        print(audioFilenames.count)
 //        print(audioFilenames[indexPath.row])
@@ -322,7 +322,7 @@ class SavedScreamsViewController: UIViewController, GADBannerViewDelegate, GADIn
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
         print("koniec grania")
         usleep(300000)
-        if playCounts > 3{ //po ilu odtworzeniach ma być wyświetlony interstitial
+        if playCounts > 2{ //po ilu odtworzeniach ma być wyświetlony interstitial
             if interstitial.isReady {
                 interstitial.present(fromRootViewController: self)
                 playCounts = 0

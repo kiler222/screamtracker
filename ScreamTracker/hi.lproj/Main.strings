@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "3EY-bV-EMp"; */
+"3EY-bV-EMp.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Saved Screams"; ObjectID = "8ea-mg-VSo"; */
+"8ea-mg-VSo.normalTitle" = "बची हुई चीखें";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "K6S-NX-AxD"; */
+"K6S-NX-AxD.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Start Scream Tracker"; ObjectID = "dcW-Dv-RUZ"; */
+"dcW-Dv-RUZ.normalTitle" = "शुरु";
+
+/* Class = "UILabel"; text = "You don't have any saved screams."; ObjectID = "zvO-Ip-059"; */
+"zvO-Ip-059.text" = "आपके पास कोई सहेजी गई चीख नहीं है।";
