@@ -8,9 +8,9 @@
 
 import UIKit
 import Charts
+import SwipeCellKit
 
-
-class ScreamTableViewCell: UITableViewCell {
+class ScreamTableViewCell: SwipeTableViewCell {
 
 
     

@@ -51,16 +51,16 @@ class StartViewController: UIViewController, PassSavedFiles {
 //        print(userSavedScreams)
         if (UserDefaults.standard.object(forKey: "dictOfSavedScreams")) != nil {
         
-            print("rozne od nil")
-            print(UserDefaults.standard.object(forKey: "dictOfSavedScreams"))
+//            print("rozne od nil")
+//            print(UserDefaults.standard.object(forKey: "dictOfSavedScreams"))
 //        let dictForSavedScreams = [String : String]()
 //        UserDefaults.standard.set(dictForSavedScreams, forKey: "dictOfSavedScreams")
         } else{
-            print("równe nil")
-            print(UserDefaults.standard.object(forKey: "dictOfSavedScreams"))
+//            print("równe nil")
+//            print(UserDefaults.standard.object(forKey: "dictOfSavedScreams"))
                     let dictForSavedScreams = [String : String]()
                     UserDefaults.standard.set(dictForSavedScreams, forKey: "dictOfSavedScreams")
-            print(UserDefaults.standard.object(forKey: "dictOfSavedScreams"))
+//            print(UserDefaults.standard.object(forKey: "dictOfSavedScreams"))
         }
         
         startTrackingButton.layer.cornerRadius = 5
@@ -90,7 +90,7 @@ class StartViewController: UIViewController, PassSavedFiles {
 //        if let pathComponent = url.appendingPathComponent(audioFilenames[indexPath.row]) {
 //            let filePath = pathComponent.path
         do {
-            let fileURLs = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
+            _ = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
 //        print(fileURLs)
             
             let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil, options: [])

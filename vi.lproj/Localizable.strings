@@ -1,0 +1,39 @@
+/* 
+  Localizable.strings
+  ScreamTracker
+
+  Created by kiler on 16.03.2019.
+  Copyright © 2019 kiler. All rights reserved.
+*/
+
+"Average level:" = "Mức trung bình:";
+"Scream level:" = "Một mức độ hét:";
+"Scream level" = "Một mức độ hét";
+"Set a scream level" = "Đặt mức độ hét";
+"Detected:" = "Đã phát hiện:";
+"Scream saved!" = "Hét lên!";
+"Stop tracking screams?" = "Ngừng theo dõi tiếng hét?";
+"You lost your unsaved screams." = "Bạn bị mất tiếng hét chưa được lưu";
+"Yes" = "Vâng";
+"No" = "Không";
+"Detected by ScreamTracker app" = "Được phát hiện bởi ứng dụng ScreamTracker";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  ScreamTracker
+
+  Created by kiler on 16.03.2019.
+  Copyright © 2019 kiler. All rights reserved.
+*/
+
+"Average level:" = "Keskitaso:";
+"Scream level:" = "Huuto taso:";
+"Scream level" = "Huuto taso";
+"Set a scream level" = "Aseta huutotaso";
+"Detected:" = "Havaittu:";
+"Scream saved!" = "Huuto tallennettu";
+"Stop tracking screams?" = "Lopeta huutojen seuranta?";
+"You lost your unsaved screams." = "Olet menettänyt tallentamattomat huutot";
+"Yes" = "Joo";
+"No" = "Ei";
+"Detected by ScreamTracker app" = "ScreamTracker-sovelluksen havaitsema";
+
+
+
+
+
+

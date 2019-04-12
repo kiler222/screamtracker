@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  ScreamTracker
+
+  Created by kiler on 16.03.2019.
+  Copyright © 2019 kiler. All rights reserved.
+*/
+
+"Average level:" = "Průměrná úroveň:";
+"Scream level:" = "Úroveň křičení:";
+"Scream level" = "Úroveň křičení";
+"Set a scream level" = "Nastavte úroveň výkřiků";
+"Detected:" = "Zjištěno:";
+"Scream saved!" = "Zachránil se výkřik";
+"Stop tracking screams?" = "Stop sledování výkřiky?";
+"You lost your unsaved screams." = "Ztratili jste neuložené výkřiky";
+"Yes" = "Ano";
+"No" = "Ne";
+"Detected by ScreamTracker app" = "Zjištěno aplikací ScreamTracker";
+
+

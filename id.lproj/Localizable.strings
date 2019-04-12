@@ -1,0 +1,39 @@
+/* 
+  Localizable.strings
+  ScreamTracker
+
+  Created by kiler on 16.03.2019.
+  Copyright © 2019 kiler. All rights reserved.
+*/
+
+"Average level:" = "Level rata-rata:";
+"Scream level:" = "Tingkat teriakan:";
+"Scream level" = "Tingkat teriakan";
+"Set a scream level" = "Tetapkan tingkat teriakan";
+"Detected:" = "Terdeteksi:";
+"Scream saved!" = "Jeritan disimpan!";
+"Stop tracking screams?" = "Hentikan pelacakan jeritan?";
+"You lost your unsaved screams." = "Anda kehilangan teriakan yang belum disimpan";
+"Yes" = "iya nih";
+"No" = "Tidak";
+"Detected by ScreamTracker app" = "Terdeteksi oleh aplikasi ScreamTracker";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

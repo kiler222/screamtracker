@@ -67,6 +67,7 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - ProgressHUD (2.60)
+  - SwipeCellKit (2.5.2)
 
 DEPENDENCIES:
   - AudioKit (= 4.5.1)
@@ -77,6 +78,7 @@ DEPENDENCIES:
   - Google-Mobile-Ads-SDK
   - GoogleMobileAdsMediationIronSource
   - ProgressHUD
+  - SwipeCellKit (= 2.5.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -95,6 +97,7 @@ SPEC REPOS:
     - IronSourceSDK
     - nanopb
     - ProgressHUD
+    - SwipeCellKit
 
 SPEC CHECKSUMS:
   AudioKit: 8154f343a24daed3ab77b76a0a45739c5f3147e5
@@ -112,7 +115,8 @@ SPEC CHECKSUMS:
   IronSourceSDK: 1eef343a0d2468889f1befb8506cc9560a10e8af
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   ProgressHUD: 4e4efbaf4f5de8bd32e0c4c3b6644a90ea1a8c3e
+  SwipeCellKit: a19e328c69c4ba983f317eeabf36ed299c69bfa4
 
-PODFILE CHECKSUM: 528af82a50895b60597e9caf7704a7bcf19db441
+PODFILE CHECKSUM: bcc8c53a2ee108ff59e944d55bff5558db432b2b
 
 COCOAPODS: 1.5.3

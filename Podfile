@@ -13,6 +13,7 @@ target 'ScreamTracker' do
     pod 'Crashlytics', '~> 3.10.7'
     pod 'ProgressHUD'
     pod 'GoogleMobileAdsMediationIronSource'
+    pod 'SwipeCellKit', '2.5.2'
     
     post_install do |installer|
         sharedLibrary = installer.aggregate_targets.find { |aggregate_target| aggregate_target.name == 'Pods-[MY_FRAMEWORK_TARGET]' }

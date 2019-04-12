@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import SwipeCellKit
 
 
 class SavedScreamsTableViewCell: UITableViewCell {

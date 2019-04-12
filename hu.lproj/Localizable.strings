@@ -1,0 +1,38 @@
+/* 
+  Localizable.strings
+  ScreamTracker
+
+  Created by kiler on 16.03.2019.
+  Copyright © 2019 kiler. All rights reserved.
+*/
+
+"Average level:" = "Átlagos szint:";
+"Scream level:" = "Egy sikoly szint:";
+"Scream level" = "Egy sikoly szint";
+"Set a scream level" = "Állítsa be a sikoly szintjét";
+"Detected:" = "észlelve:";
+"Scream saved!" = "Egy sikoly mentett";
+"Stop tracking screams?" = "Állítsa le a sikolyok követését?";
+"You lost your unsaved screams." = "Elvesztette a nem mentett sikolyait";
+"Yes" = "Igen";
+"No" = "Nem";
+"Detected by ScreamTracker app" = "A ScreamTracker alkalmazás által észlelt";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  ScreamTracker
+
+  Created by kiler on 16.03.2019.
+  Copyright © 2019 kiler. All rights reserved.
+*/
+
+"Average level:" = "平均水平:";
+"Scream level:" = "一個尖叫的水平:";
+"Scream level" = "一個尖叫的水平";
+"Set a scream level" = "設置一個尖叫級別";
+"Detected:" = "檢測:";
+"Scream saved!" = "尖叫得救了";
+"Stop tracking screams?" = "停止跟踪尖叫聲？";
+"You lost your unsaved screams." = "你失去了未得救的尖叫聲";
+"Yes" = "是";
+"No" = "沒有";
+"Detected by ScreamTracker app" = "通過ScreamTracker應用程序檢測到";
+
+
+
+
+
+
+

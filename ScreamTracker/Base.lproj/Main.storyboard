@@ -233,7 +233,7 @@
                                 <rect key="frame" x="0.0" y="73" width="320" height="445"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedScreamsTableViewCell" rowHeight="150" id="wHI-AN-JEa" userLabel="SavedScreamTableViewCell" customClass="SavedScreamsTableViewCell" customModule="ScreamTracker" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SwipeSavedScreamsTableViewCell" rowHeight="150" id="wHI-AN-JEa" userLabel="SavedScreamTableViewCell" customClass="SwipeSavedScreamsTableViewCell" customModule="ScreamTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wHI-AN-JEa" id="QOs-xs-66w">

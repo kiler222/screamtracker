@@ -13,6 +13,7 @@ import GoogleMobileAds
 import Charts
 import Firebase
 import Crashlytics
+import SwipeCellKit
 
 
 protocol PassSavedFiles {
@@ -26,6 +27,10 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     var delegate : PassSavedFiles?
     let hasWeaponOfMassDescrtruction : Bool = true
     
+    var isSwipeRightEnabled = true
+    var defaultOptions = SwipeOptions()
+    var buttonStyle: ButtonStyle = .backgroundColor
+    var buttonDisplayMode: ButtonDisplayMode = .imageOnly
     
     @IBAction func backToFirstViewController(_ sender: Any) {
     
@@ -343,7 +348,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        print("ile wierszy: \(dictOfAudioFloat.keys.count)")
+        print("ile wierszy: \(dictOfAudioFloat.keys.count)")
         return dictOfAudioFloat.keys.count
     }
     
@@ -358,7 +363,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
      
         cell.setChartInCell(audioData: dictOfAudioFloat[audioFilenames[indexPath.row]]!, points: 350)
         
-  
+        cell.delegate = self
         
         let cellAudioButton = UIButton(type: .custom)
         cellAudioButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
@@ -366,6 +371,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         cellAudioButton.setImage(UIImage(named: "save"), for: .normal)
         cellAudioButton.contentMode = .scaleAspectFit
         cellAudioButton.tag = indexPath.row
+        print("ustawiony cell.sender.tag: \(cellAudioButton.tag)")
         if tagsForHidden.contains(audioFilenames[indexPath.row]){
             cellAudioButton.isHidden = true
         }
@@ -381,6 +387,8 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
     @objc func accessoryButtonTapped(sender : UIButton){
         print("sender.tag: \(sender.tag)")
+        print("audiofilenames count: \(audioFilenames.count)")
+        print("audifilnams array: \(audioFilenames)")
     
         let number = Int.random(in: 100000000 ... 999999999)
                         do {
@@ -406,8 +414,8 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         tempDictOfSavedScreams?["\(number).m4a"] = timeStamp[sender.tag]
         
         UserDefaults.standard.set(tempDictOfSavedScreams, forKey: "dictOfSavedScreams")
-        print(UserDefaults.standard.object(forKey: "dictOfSavedScreams"))
-            
+//        print(UserDefaults.standard.object(forKey: "dictOfSavedScreams"))
+        
         tagsForHidden.append(audioFilenames[sender.tag])
         sender.isHidden = true
         ProgressHUD.showSuccess("\(NSLocalizedString("Scream saved!", comment: ""))")
@@ -448,49 +456,49 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
             
-            // handle delete (by removing the data from your array and updating the tableview)
-         
-            tableView.beginUpdates()
-            
-            let fileManager = FileManager.default
-            let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-            let url = NSURL(fileURLWithPath: path)
-            if let pathComponent = url.appendingPathComponent(audioFilenames[indexPath.row]) {
-            let filePath = pathComponent.path
-            do {
-                try fileManager.removeItem(atPath: filePath)
-//                print("w try delete file: \(audioFilenames[indexPath.row])")
-            }
-            catch let error as NSError {
-                print("Ooops! Something went wrong: \(error)")
-            }
-            }
-            
-            print(tagsForHidden)
-            if let index = tagsForHidden.index(of: audioFilenames[indexPath.row]) {
-                tagsForHidden.remove(at: index)
-            }
-            print(tagsForHidden)
-            
-            print(dictOfAudioFloat.keys)
-            dictOfAudioFloat.removeValue(forKey: audioFilenames[indexPath.row])
-            audioFilenames.remove(at: indexPath.row)
-           
-            
-            
-            
-           
-            
-            
-         print(dictOfAudioFloat.keys)
-            tableView.deleteRows(at: [indexPath], with: .left)
-            tableView.endUpdates()
-            tableView.reloadData() //czy to dobrze?
+
         }
     }
 
     
-
+    func deleteScream(deleteIndexPath: IndexPath){
+        
+        // handle delete (by removing the data from your array and updating the tableview)
+        
+//        tableView.beginUpdates()
+        print("kasuje taki plik: \(audioFilenames[deleteIndexPath.row])")
+        let fileManager = FileManager.default
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let url = NSURL(fileURLWithPath: path)
+        if let pathComponent = url.appendingPathComponent(audioFilenames[deleteIndexPath.row]) {
+            let filePath = pathComponent.path
+            do {
+                try fileManager.removeItem(atPath: filePath)
+                //                print("w try delete file: \(audioFilenames[indexPath.row])")
+            }
+            catch let error as NSError {
+                print("Ooops! Something went wrong: \(error)")
+            }
+        }
+        
+        print(tagsForHidden)
+        if let index = tagsForHidden.index(of: audioFilenames[deleteIndexPath.row]) {
+            tagsForHidden.remove(at: index)
+        }
+        print(tagsForHidden)
+        
+        print(dictOfAudioFloat.keys)
+        dictOfAudioFloat.removeValue(forKey: audioFilenames[deleteIndexPath.row])
+        audioFilenames.remove(at: deleteIndexPath.row)
+        
+        
+        print(dictOfAudioFloat.keys)
+//        tableView.deleteRows(at: [indexPath], with: .left)
+//        tableView.endUpdates()
+//        tableView.reloadData() //czy to dobrze?
+//
+        
+    }
     
     
     func setChart() {
@@ -836,7 +844,12 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
  */
     
     func playScream2(audioFileName: String){
-        timerForScreamDetection.invalidate()
+        
+        //TODO - jak wiele razy klikam odtwarzanie plików to na "timerForScreamDetection.invalidate()" wywala Thread 1: Fatal error: Unexpectedly found nil while unwrapping an Optional value
+        
+        if timerForScreamDetection != nil {
+            timerForScreamDetection.invalidate()
+        }
         timerForScreamDetection = nil
 
         var filePath: String!
@@ -1344,4 +1357,107 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
 */
     
 
+}
+
+
+
+extension ViewController: SwipeTableViewCellDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        
+        let share = SwipeAction(style: .default, title: nil) { action, indexPath in
+            
+            let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+            let url = NSURL(fileURLWithPath: path)
+            let pathComponent = url.appendingPathComponent(self.audioFilenames[indexPath.row])
+            let fileName = pathComponent!
+            //            print("filename full path: \(fileName)")
+            
+            //            let url = NSURLfileURL(withPath:fileName)
+            
+            let activityViewController = UIActivityViewController(activityItems: [NSLocalizedString("Detected by ScreamTracker app", comment: ""), fileName] , applicationActivities: nil)
+            
+            DispatchQueue.main.async {
+                
+                self.present(activityViewController, animated: true, completion: nil)
+            }
+            
+            
+            //            let text = "Be fabulous with FAB app and join our Fashion Advisory Board. Download it now from http://toappsto.re/fabapp/"
+            //            let textToShare = [ text ]
+            //            let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+            //            activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+            //
+            //            //        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.mail, UIActivity.ActivityType.postToFacebook, UIActivity.ActivityType.message ,UIActivity.ActivityType.postToTwitter]
+            //
+            //            self.present(activityViewController, animated: true, completion: nil)
+            
+            
+            
+            
+        }
+        configure(action: share, with: .share)
+        
+        let delete = SwipeAction(style: .destructive, title: nil) { action, indexPath in
+            self.deleteScream(deleteIndexPath: indexPath)
+            DispatchQueue.main.async {
+                
+                tableView.reloadData()
+            }
+            //                tableView.deleteRows(at: [indexPath], with: .left)
+        }
+        delete.image = UIImage(named: "delete")
+//        print("jaki mamy buttondisplaymode? -> \(buttonDisplayMode)")
+        configure(action: delete, with: .delete)
+        
+        //            let cell = tableView.cellForRow(at: indexPath) as! SwipeSavedScreamsTableViewCell
+        //            let closure: (UIAlertAction) -> Void = { _ in cell.hideSwipe(animated: true) }
+        //            let more = SwipeAction(style: .default, title: nil) { action, indexPath in
+        //                let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        //                controller.addAction(UIAlertAction(title: "Reply", style: .default, handler: closure))
+        //                controller.addAction(UIAlertAction(title: "Forward", style: .default, handler: closure))
+        //                controller.addAction(UIAlertAction(title: "Mark...", style: .default, handler: closure))
+        //                controller.addAction(UIAlertAction(title: "Notify Me...", style: .default, handler: closure))
+        //                controller.addAction(UIAlertAction(title: "Move Message...", style: .default, handler: closure))
+        //                controller.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: closure))
+        //                self.present(controller, animated: true, completion: nil)
+        //            }
+        //            configure(action: more, with: .more)
+        
+        return [delete, share]
+        
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeOptions()
+        options.expansionStyle = orientation == .left ? .selection : .destructive
+        options.transitionStyle = defaultOptions.transitionStyle
+        
+        switch buttonStyle {
+        case .backgroundColor:
+            options.buttonSpacing = 11
+        case .circular:
+            options.buttonSpacing = 4
+            options.backgroundColor = #colorLiteral(red: 0.9467939734, green: 0.9468161464, blue: 0.9468042254, alpha: 1)
+        }
+        
+        return options
+    }
+    
+    func configure(action: SwipeAction, with descriptor: ActionDescriptor) {
+        action.title = descriptor.title(forDisplayMode: buttonDisplayMode)
+        action.image = descriptor.image(forStyle: buttonStyle, displayMode: buttonDisplayMode)
+        
+        switch buttonStyle {
+        case .backgroundColor:
+            action.backgroundColor = descriptor.color
+        case .circular:
+            action.backgroundColor = .clear
+            action.textColor = descriptor.color
+            action.font = .systemFont(ofSize: 13)
+            action.transitionDelegate = ScaleTransition.default
+        }
+    }
+    
+    
 }

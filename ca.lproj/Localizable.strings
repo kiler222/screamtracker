@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  ScreamTracker
+
+  Created by kiler on 16.03.2019.
+  Copyright © 2019 kiler. All rights reserved.
+*/
+
+"Average level:" = "Nivell mitjà:";
+"Scream level:" = "Nivell de crit:";
+"Scream level" = "Nivell de crit";
+"Set a scream level" = "Establiu un nivell de crit";
+"Detected:" = "Detectat:";
+"Scream saved!" = "Un crit salvat";
+"Stop tracking screams?" = "Aturar el seguiment de crits?";
+"You lost your unsaved screams." = "Has perdut els teus crits sense guardar";
+"Yes" = "Sí";
+"No" = "No";
+"Detected by ScreamTracker app" = "Detectat per l’aplicació ScreamTracker";
+
+
+
+

@@ -1,0 +1,6 @@
+/* Bundle name */
+"CFBundleName" = "Krzykomierz";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Potrzebujemy dostępu do mikrofonu, żeby wykrywać krzyki";
+
