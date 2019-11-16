@@ -5,15 +5,15 @@ target 'ScreamTracker' do
   use_frameworks!
 
   # Pods for nagrywanie2
-  pod 'AudioKit', '4.5.1'
+  pod 'AudioKit'#, '4.7.2'
     pod 'Google-Mobile-Ads-SDK'
     pod 'Charts', '3.2'
     pod 'Firebase/Core'
-    pod 'Fabric', '~> 1.7.11'
-    pod 'Crashlytics', '~> 3.10.7'
+    pod 'Fabric'#, '~> 1.7.11'
+    pod 'Crashlytics'#, '~> 3.10.7'
     pod 'ProgressHUD'
-    pod 'GoogleMobileAdsMediationIronSource'
-    pod 'SwipeCellKit', '2.5.2'
+   # pod 'GoogleMobileAdsMediationIronSource'
+    pod 'SwipeCellKit', '2.6.0'
     
     post_install do |installer|
         sharedLibrary = installer.aggregate_targets.find { |aggregate_target| aggregate_target.name == 'Pods-[MY_FRAMEWORK_TARGET]' }
