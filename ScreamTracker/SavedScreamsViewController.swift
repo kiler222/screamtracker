@@ -330,15 +330,20 @@ class SavedScreamsViewController: UIViewController, GADBannerViewDelegate, GADIn
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
         print("koniec grania")
-        usleep(300000)
-        if playCounts > 2{ //po ilu odtworzeniach ma być wyświetlony interstitial
-            if interstitial.isReady {
-                interstitial.present(fromRootViewController: self)
-                playCounts = 0
-            } else {
-                print("Ad wasn't ready")
+//        usleep(300000)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+            if self.playCounts > 2{ //było ">2" - po ilu odtworzeniach ma być wyświetlony interstitial
+              
+                if self.interstitial.isReady {
+                    self.interstitial.present(fromRootViewController: self)
+                    self.playCounts = 0
+                } else {
+                    print("Ad wasn't ready")
+                }
             }
-        }
+        })
+        
+        
         self.isPlayingScream = false
         
     }

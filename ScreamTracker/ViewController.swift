@@ -221,7 +221,15 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
             player = AKPlayer(audioFile: file)
         }
        
-
+                AudioKit.output = silence
+                do {
+                    try AudioKit.start()
+                    print("PJ audiokit started")
+                } catch {
+                    AKLog("AudioKit did not start!")
+                }
+        
+        
         averageLimit.lineColor = .green
         averageLimit.lineWidth = 1
         averageLimit.drawLabelEnabled = false
@@ -427,6 +435,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
      //   print(audioFilenames)
         print("You tapped cell number \(indexPath.row).")
+        stopScreamTrackerPlot()
         playScream2(audioFileName: audioFilenames[indexPath.row])
         print(audioFilenames[indexPath.row])
         
@@ -546,13 +555,13 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        AudioKit.output = silence
-        do {
-            try AudioKit.start()
-        } catch {
-            AKLog("AudioKit did not start!")
-        }
+        print("PJ viewdidappear przed crashem????")
+//        AudioKit.output = silence
+//        do {
+//            try AudioKit.start()
+//        } catch {
+//            AKLog("AudioKit did not start!")
+//        }
         
     }
     
@@ -587,14 +596,16 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
             }
             
            // resetCharts()
-           
+           recorder.stop()
+            
             ProgressHUD.dismiss()
             startScreamTrackerPlot() //updateUI
-            screamDetectionTimer()
+            
             isScreamTrackerRunning = true
          //   screamTrackerButton.setTitle("Stop Scream Tracker", for: .normal)
             do {
                 try recorder.record()
+                screamDetectionTimer()
             } catch {
                 print("Errored recording.")
             }
@@ -619,8 +630,10 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         if let _ = player.audioFile?.duration {
            // recorder.stop()
             tape.exportAsynchronously(name: audioFileName, baseDir: .documents, exportFormat: .m4a, fromSample: Int64(startSample), toSample: Int64(endSample)) {_, exportError in
+                
+                print("PJ from: \(startSample), to: \(endSample), duration: \(self.player.audioFile?.duration)")
                                         if let error = exportError {
-                                            print("Export Failed \(error)")
+                                            print("Export Failed \(error.localizedDescription)")
                                         } else {
                                             print("Export succeeded")
                                             self.dictOfAudioFloat[audioFileName] = self.prepareAudioDataFloat(audioFileName: audioFileName)
@@ -710,9 +723,13 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     func stopScreamTrackerPlot(){
         
      //   screamTrackerButton.setTitle("Start Scream Tracker", for: .normal)
-        timerForDrawingPlot.invalidate()
+        if timerForDrawingPlot != nil {
+            timerForDrawingPlot.invalidate()
+        }
         timerForDrawingPlot = nil
-        timerForScreamDetection.invalidate()
+        if timerForScreamDetection != nil{
+            timerForScreamDetection.invalidate()
+        }
         timerForScreamDetection = nil
 //        timerForAverageDB.invalidate()
 //        timerForAverageDB = nil
@@ -844,6 +861,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
  */
     
     func playScream2(audioFileName: String){
+        self.recorder.stop()
         
         //TODO - jak wiele razy klikam odtwarzanie plików to na "timerForScreamDetection.invalidate()" wywala Thread 1: Fatal error: Unexpectedly found nil while unwrapping an Optional value
         
@@ -867,9 +885,9 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
 //            print(filePath)
             let fileManager = FileManager.default
             if fileManager.fileExists(atPath: filePath) {
-                print("FILE AVAILABLE")
+//                print("FILE AVAILABLE")
             } else {
-                print("FILE NOT AVAILABLE")
+//                print("FILE NOT AVAILABLE")
             }
         } else {
             print("FILE PATH NOT AVAILABLE")
@@ -885,6 +903,22 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
 //        print(filePath)
 //        print(urlFile)
 
+        do {
+            try recorder.reset()
+        } catch{
+            print("Error reseting recorder")
+        }
+        
+        // resetCharts()
+        
+//        ProgressHUD.dismiss()
+//        startScreamTrackerPlot() //updateUI
+//        screamDetectionTimer()
+//        isScreamTrackerRunning = true
+        //   screamTrackerButton.setTitle("Stop Scream Tracker", for: .normal)
+        
+        
+        
 
         do {
             sound = try AVAudioPlayer(contentsOf: urlFile)
@@ -902,17 +936,32 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
         print("koniec grania")
-        usleep(300000)
-        if playCounts > 2 { //po ilu odtworzeniach ma być wyświetlony interstitial
-            if interstitial.isReady {
-                interstitial.present(fromRootViewController: self)
-                playCounts = 0
+      
+        //        usleep(300000)
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+            if self.playCounts > 2{ //było ">2" - po ilu odtworzeniach ma być wyświetlony interstitial
+                
+                if self.interstitial.isReady {
+                    self.interstitial.present(fromRootViewController: self)
+                    self.playCounts = 0
+                } else {
+                    print("Ad wasn't ready")
+                }
             } else {
-                print("Ad wasn't ready")
+                do{
+                    try self.recorder.record()
+                    startScreamTrackerPlot()
+                    screamDetectionTimer()
+                    
+                } catch {
+                    print("PJ blad recordingu")
+                }
+            
             }
-        }
+        
+//        })
         self.isPlayingScream = false
-        screamDetectionTimer()
+        
     }
     
     
@@ -1110,23 +1159,24 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
                         oneExtraStepWithoutScream -= 1
                         
                         if oneExtraStepWithoutScream == 0{
-                        endSample = Int(recorder.audioFile!.samplesCount)
-                        audioFilenames.insert("screamFile\(numbersOfScreams).m4a", at: 0)
-                        exportScreamFile(audioFileName: "screamFile\(numbersOfScreams).m4a", startSample: (startSample-33075), endSample: (endSample))
-                        numbersOfScreams += 1
+                            endSample = Int(recorder.audioFile!.samplesCount)
+                            
+                            if ((startSample - 33075) < endSample ) {
+                                
+                                audioFilenames.insert("screamFile\(numbersOfScreams).m4a", at: 0)
+                                exportScreamFile(audioFileName: "screamFile\(numbersOfScreams).m4a", startSample: (startSample-33075), endSample: (endSample))
+                                numbersOfScreams += 1
+                                } else {
+                                print("PJ ERROR start sample: \(startSample - 33075), end: \(endSample!)")
+                                screamDetected = false
+                            }
+                        
+                        
+                        
                         }
                         
                     }
-//                    else {
-//
-//                        endSample = Int(recorder.audioFile!.samplesCount)
-//                        audioFilenames.insert("screamFile\(numbersOfScreams).m4a", at: 0)
-//                        exportScreamFile(audioFileName: "screamFile\(numbersOfScreams).m4a", startSample: (startSample-33075), endSample: (endSample))
-//                         print("/n\(oneExtraStepWithoutScream)/n")
-//                            numbersOfScreams += 1
-//                    }
-                    
-//                    print("krzyk < 70 i screamDetected == false")
+
                     
                 }
             }
@@ -1176,7 +1226,15 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     }
     
     func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        print("PJ cancelowana reklama")
+        do {
+            try recorder.record()
+            startScreamTrackerPlot()
+        } catch {
+            print("Errored recording.")
+        }
         interstitial = createAndLoadInterstitial()
+        screamDetectionTimer()
     }
 
     
@@ -1206,155 +1264,12 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
             // Fallback on earlier versions
         }
         
-        //        view.addConstraints(
-//            [NSLayoutConstraint(item: bannerView,
-//                                attribute: .bottom,
-//                                relatedBy: .equal,
-//                                toItem: view.safeAreaLayoutGuide,
-//                                attribute: .top,
-//                                multiplier: 1,
-//                                constant: 0),
-//             NSLayoutConstraint(item: bannerView,
-//                                attribute: .centerX,
-//                                relatedBy: .equal,
-//                                toItem: view,
-//                                attribute: .centerX,
-//                                multiplier: 1,
-//                                constant: 0)
-//            ])
-//
+
     }
     
     
     
-    //MARK: not used func
-    
-//    func exportFile(){
-//
-//        tape = recorder.audioFile!
-//        player.load(audioFile: tape)
-//
-//
-//        if let _ = player.audioFile?.duration {
-//            recorder.stop()
-//            tape.exportAsynchronously(name: "TempTestFile.m4a",
-//                                      baseDir: .documents,
-//                                      exportFormat: .m4a) {_, exportError in
-//                                        if let error = exportError {
-//                                            print("Export Failed \(error)")
-//                                        } else {
-//                                            print("Export succeeded")
-//                                        }
-//            }
-//
-//
-//
-//
-//        }
-//
-//        usleep(300000) //czekamy az zakończy się export pliku
-//
-//        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-//        let url = NSURL(fileURLWithPath: path)
-//        if let pathComponent = url.appendingPathComponent("TempTestFile.m4a") {
-//            let filePath = pathComponent.path
-//            let fileManager = FileManager.default
-//            if fileManager.fileExists(atPath: filePath) {
-//                print("FILE AVAILABLE")
-//            } else {
-//                print("FILE NOT AVAILABLE")
-//            }
-//        } else {
-//            print("FILE PATH NOT AVAILABLE")
-//        }
-//
-//        let recordedDuration = player != nil ? player.audioFile?.duration  : 0
-//        print(recordedDuration!)
-//
-//
-//    }
-    
-/*    func drawWaveformChart(audioFileName: String, points: Int){
-        var mixloop: AKAudioFile!
-        
-        do{
-            try mixloop = AKAudioFile(readFileName: audioFileName, baseDir: .documents)
-            //           print("w mixloopie")
-        } catch let error{
-            //           print("error po catchu")
-            print(error)
-        }
-        
-        setRecordedSessionChart(audioData: (mixloop.floatChannelData![0]), points: points)
-        
-        
-        
-    }
- */
-    
- /*
-    func setRecordedSessionChart(audioData: [Float], points: Int) {
-        
-        
-        
-        var dataEntries: [ChartDataEntry] = []
-        
-        print(audioData.count)
-        
-        for i in 0..<audioData.count {
-            
-            if i % (audioData.count / (points)) == 0{
-                
-                let dataEntry = ChartDataEntry(x: Double(i), y: Double(audioData[i]*10000))
-                dataEntries.append(dataEntry)
-            }
-            
-        }
-        
-        
-        
-        
-        
-        
-        let chartDataSet = LineChartDataSet(values: dataEntries, label: "dB")
-        chartDataSet.colors = [UIColor.red]
-        
-        let chartData = LineChartData()
-        
-        chartDataSet.drawCirclesEnabled = false
-        chartDataSet.mode = .cubicBezier
-        chartDataSet.drawFilledEnabled = true
-        //  chartDataSet.cubicIntensity = 0.1
-        
-        
-        chartData.addDataSet(chartDataSet)
-        chartData.setDrawValues(false)
-        
-        recordedSessionChartView.data = chartData
-        recordedSessionChartView.xAxis.drawGridLinesEnabled = false
-        recordedSessionChartView.xAxis.drawLabelsEnabled = false
-        recordedSessionChartView.xAxis.labelPosition = .bottom
-        recordedSessionChartView.xAxis.axisLineColor = .clear
-        recordedSessionChartView.leftAxis.drawGridLinesEnabled = false
-        recordedSessionChartView.leftAxis.drawLabelsEnabled = false
-        recordedSessionChartView.rightAxis.drawLabelsEnabled = false
-        recordedSessionChartView.rightAxis.drawGridLinesEnabled = false
-        //        recordedSessionChartView.rightAxis.axisMaximum = 120
-        //        recordedSessionChartView.rightAxis.axisMinimum = 30
-        recordedSessionChartView.rightAxis.axisLineColor = .white
-        //        recordedSessionChartView.leftAxis.axisMaximum = 120
-        //        recordedSessionChartView.leftAxis.axisMinimum = 30
-        recordedSessionChartView.leftAxis.axisLineColor = .white
-        //   //   recordedSessionChartView.leftAxis.calculate(min: -0.001, max: 0.001)
-        recordedSessionChartView.legend.enabled = false
-        //    //  recordedSessionChartView.rightAxis.calculate(min: -0.001, max: 0.001)
-        recordedSessionChartView.chartDescription?.enabled = false
-        //        recordedSessionChartView.setScaleEnabled(false)
-        
-        recordedSessionChartView.frame = CGRect(x: 0, y: 210, width: view.frame.width , height: 85)
-        
-    }
-*/
+   
     
 
 }
